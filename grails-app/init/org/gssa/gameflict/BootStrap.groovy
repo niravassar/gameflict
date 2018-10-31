@@ -26,6 +26,6 @@ class BootStrap {
         Field mm1 = Field.findByName("MM1")
         LocalTime nineAm = LocalTime.of(9,00)
         LocalDate Oct31 = LocalDate.of(2018, 10, 31)
-        gameService.createGame(409, Oct31, nineAm, AgeGroup.U9, mm1, gssaRec)
+        gameService.createOrUpdate(409, Oct31, nineAm, AgeGroup.U9, mm1, gssaRec)
     }
 }

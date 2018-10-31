@@ -8,9 +8,16 @@ import java.time.LocalTime
 @Transactional
 class GameService {
 
-    Game createGame(Integer gameNumber, LocalDate date, LocalTime time, AgeGroup ageGroup,
-                    Field field, League league) {
-        Game game = new Game(gameNumber: gameNumber, date: date, time: time, ageGroup: ageGroup, field: field, league: league).save()
+    Game createOrUpdate(Integer gameNumber, LocalDate date, LocalTime time, AgeGroup ageGroup,
+                        Field field, League league) {
+        Game game = Game.findOrCreateByGameNumber(gameNumber)
+        game.gameNumber = gameNumber
+        game.date = date
+        game.time = time
+        game.ageGroup = ageGroup
+        game.field = field
+        game.league = league
+        game.save()
         game
     }
 }
