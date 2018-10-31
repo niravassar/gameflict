@@ -2,22 +2,21 @@ package org.gssa.gameflict
 
 import grails.test.hibernate.HibernateSpec
 import grails.testing.services.ServiceUnitTest
-import org.gssa.gameflict.mock.FieldMocker
 
 class FieldServiceSpec extends HibernateSpec implements ServiceUnitTest<FieldService>{
 
-    FieldMocker fieldMocker = new FieldMocker()
+    FieldCreator fieldCreator = new FieldCreator()
 
     List<Class> getDomainClasses() { [Field, FieldNickName]}
 
     def setup() {
-        fieldMocker.mockFields()
+        fieldCreator.createFields()
     }
 
     void "test find field by nickname"() {
         when:
-        Field mm1 = service.findFieldByName("GSSA Meadowmere 1")
-        Field og1 = service.findFieldByName("Oak Grove 1")
+        Field mm1 = service.findFieldByName("GSSA Meadowmere Park #1")
+        Field og1 = service.findFieldByName("Oakgrove #1")
 
         then:
         mm1.name == "MM1"

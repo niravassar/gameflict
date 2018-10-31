@@ -55,7 +55,7 @@ class FieldCreator {
         for(f in fieldsMap) {
             Field field = new Field(name: f.name)
             for (fnickName in f.fieldNickNames) {
-                new FieldNickName(name: fnickName, field: field).save(flush: true)
+                new FieldNickName(name: fnickName, field: field).save()
             }
         }
     }
