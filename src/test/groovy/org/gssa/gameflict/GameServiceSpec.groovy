@@ -52,7 +52,35 @@ class GameServiceSpec extends HibernateSpec implements ServiceUnitTest<GameServi
         game.time.equals(tenAm)
     }
 
-    /***********************************************/
+    void "test match ageGroup"() {
+        when:
+        AgeGroup u9AgeGroup = service.matchAgeGroup("U9")
+        AgeGroup u13AgeGroup = service.matchAgeGroup("U13")
 
+        then:
+        u9AgeGroup.name() == "U9"
+        u9AgeGroup.duration == 1.25
+        u13AgeGroup.name()  == "U13"
+        u13AgeGroup.duration == 1.5
+    }
 
+    void "test parse localdate"() {
+        when:
+        LocalDate localDate1 = service.parseDate("08/15/2018")
+        LocalDate localDate2 = service.parseDate("10/31/2018")
+
+        then:
+        localDate1.toString() == "2018-08-15"
+        localDate2.toString() == "2018-10-31"
+    }
+
+    void "test parse localtime"() {
+        when:
+        LocalTime localTime1 = service.parseTime("09:00:00 AM")
+        LocalTime localTime2 = service.parseTime("02:15:00 PM")
+
+        then:
+        localTime1.toString() == "09:00"
+        localTime2.toString() == "14:15"
+    }
 }

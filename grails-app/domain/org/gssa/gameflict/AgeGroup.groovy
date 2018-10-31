@@ -18,7 +18,7 @@ enum AgeGroup {
     U17(2.0),
     U18(2.0)
 
-    Long duration
+    Double duration
 
     AgeGroup(BigDecimal duration) {
         this.duration = duration
