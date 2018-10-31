@@ -4,6 +4,8 @@ import groovy.json.JsonSlurper
 
 class FieldCreator {
 
+    JsonSlurper jsonSlurper = new JsonSlurper()
+
     static String fieldsString = '''
         [
             {"name": "OG1",  "fieldNickNames": ["GSSA Oak Grove Park #1", "Oakgrove #1"]},
@@ -38,8 +40,16 @@ class FieldCreator {
             {"name": "BJ3H",  "fieldNickNames": ["GSSA Bob Jones #3H"]}                       
         ]'''
 
+    static String leaguesString = '''
+        [
+            {"name": "GSSA Rec", "season": "Fall 2018"},
+            {"name": "GSSA NMCSL", "season": "Fall 2018"},
+            {"name": "GSSA Adult", "season": "Fall 2018"},
+            {"name": "U90C", "season": "Fall 2018"},                     
+            {"name": "GMSL", "season": "Fall 2018"}                    
+        ]'''
+
     void createFields() {
-        JsonSlurper jsonSlurper = new JsonSlurper()
         List<Map> fieldsMap = jsonSlurper.parseText(fieldsString)
 
         for(f in fieldsMap) {
@@ -47,6 +57,14 @@ class FieldCreator {
             for (fnickName in f.fieldNickNames) {
                 new FieldNickName(name: fnickName, field: field).save(flush: true)
             }
+        }
+    }
+
+    void createLeagues() {
+        List<Map> leaguesMap = jsonSlurper.parseText(leaguesString)
+
+        for(l in leaguesMap) {
+            new League(name: l.name, season: l.season).save()
         }
     }
 }

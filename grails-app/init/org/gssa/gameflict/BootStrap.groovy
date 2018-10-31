@@ -2,10 +2,14 @@ package org.gssa.gameflict
 
 class BootStrap {
 
+    FieldCreator fieldCreator = new FieldCreator()
+
     def init = { servletContext ->
 
-        FieldCreator fieldCreator = new FieldCreator()
-        fieldCreator.createFields()
+        if (Field.count() < 1) {
+            fieldCreator.createFields()
+            fieldCreator.createLeagues()
+        }
     }
     def destroy = {
     }
