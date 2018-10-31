@@ -1,4 +1,4 @@
-package gameflict
+package org.gssa.gameflict
 
 import grails.boot.GrailsApp
 import grails.boot.config.GrailsAutoConfiguration

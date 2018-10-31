@@ -1,4 +1,4 @@
-package gameflict
+package org.gssa.gameflict
 
 class UrlMappings {
 
