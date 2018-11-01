@@ -19,4 +19,14 @@ class Game {
         gameBlockTime.endTime = time.plusMinutes(ageGroup.durationMinutes)
         gameBlockTime
     }
+
+    boolean isGameOverlapping(Game otherGame) {
+        GameBlockTime thisGameBlockTime = this.gameBlockTime
+        GameBlockTime otherGameBlockTime = otherGame.gameBlockTime
+
+        boolean startOverLap = this.gameBlockTime.startTime < otherGameBlockTime.startTime && otherGameBlockTime.startTime < thisGameBlockTime.endTime
+        boolean endOverLap = this.gameBlockTime.startTime < otherGameBlockTime.endTime && otherGameBlockTime.endTime < thisGameBlockTime.endTime
+
+        startOverLap || endOverLap
+    }
 }

@@ -114,7 +114,38 @@ class GameServiceSpec extends HibernateSpec implements ServiceUnitTest<GameServi
         gameBlockTime.game.gameNumber == 409
         gameBlockTime.startTime.toString() == "09:00"
         gameBlockTime.endTime.toString() == "10:15"
+    }
 
+    void "test game overlapping true"() {
+        when:
+        League gssaRec = League.findByName("GSSA Rec Fall 2018")
+        Field mm1 = Field.findByName("MM1")
+        Game game1 = service.createOrUpdate(409, oct31, nineAm, AgeGroup.U9, mm1, gssaRec)
+        Game game2 = service.createOrUpdate(410, oct31, tenAm, AgeGroup.U9, mm1, gssaRec)
+        boolean result1 = game1.isGameOverlapping(game2)
+        boolean result2 = game2.isGameOverlapping(game1)
+        List<Game> gameList = Game.list()
+
+        then:
+        gameList.size() == 2
+        result1
+        result2
+    }
+
+    void "test game overlapping false"() {
+        when:
+        League gssaRec = League.findByName("GSSA Rec Fall 2018")
+        Field mm1 = Field.findByName("MM1")
+        Game game1 = service.createOrUpdate(409, oct31, nineAm, AgeGroup.U9, mm1, gssaRec)
+        Game game2 = service.createOrUpdate(410, oct31, tenAm.plusHours(1), AgeGroup.U9, mm1, gssaRec)
+        boolean result1 = game1.isGameOverlapping(game2)
+        boolean result2 = game2.isGameOverlapping(game1)
+        List<Game> gameList = Game.list()
+
+        then:
+        gameList.size() == 2
+        !result1
+        !result2
     }
 
 }
