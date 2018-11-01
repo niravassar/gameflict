@@ -35,6 +35,14 @@ class GameService {
         games
     }
 
+    def findAllAndGroupByFieldAndDate() {
+        List<Game> games = Game.list()
+        def byFieldAndLocalDate= { game ->
+            "${game.field}-${game.date}"
+        }
+        def groups = games.groupBy(byFieldAndLocalDate)
+        groups
+    }
     /**************************** protected **************************************************/
 
     protected LocalDate parseDate(String dateAsString) {

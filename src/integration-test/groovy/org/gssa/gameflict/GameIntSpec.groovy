@@ -2,6 +2,7 @@ package org.gssa.gameflict
 
 import grails.testing.mixin.integration.Integration
 import grails.transaction.*
+import org.codehaus.groovy.runtime.GStringImpl
 import spock.lang.Specification
 
 import java.time.LocalDate
@@ -16,12 +17,14 @@ class GameIntSpec extends Specification {
     def setup() {
         gameService.gameEntry(200, "10/28/2018","09:00:00 AM","U9",
                 "GSSA Meadowmere #2A","GSSA Rec Fall 2018")
-        gameService.gameEntry(201, "10/28/2018","10:15:00 AM","U9",
+        gameService.gameEntry(201, "10/28/2018","10:00:00 AM","U9",
                 "GSSA Meadowmere #2A","GSSA Rec Fall 2018")
         gameService.gameEntry(202, "10/31/2018","10:15:00 AM","U10",
                 "GSSA Oak Grove Park #5A","GSSA Rec Fall 2018")
         gameService.gameEntry(203, "11/15/2018","05:15:00 PM","U13",
                 "Oakgrove #1","GSSA Rec Fall 2018")
+        gameService.gameEntry(204, "11/15/2018","10:00:00 AM","U9",
+                "GSSA Meadowmere #2A","GSSA Rec Fall 2018")
 
     }
 
@@ -58,5 +61,18 @@ class GameIntSpec extends Specification {
         games.size() == 2
         games[0].gameNumber == 200
         games[1].gameNumber == 201
+    }
+
+    void "test groupBy date and field"() {
+        when:
+        Map<String, List<Game>> groups = gameService.findAllAndGroupByFieldAndDate()
+        Set<String> keys = groups.keySet()
+        List<Game> mm2GamesOct28 = groups.get(keys[0])
+
+        then:
+        groups.size() == 4
+        mm2GamesOct28.size() == 2
+        mm2GamesOct28[0].gameNumber == 200
+        mm2GamesOct28[1].gameNumber == 201
     }
 }
