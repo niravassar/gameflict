@@ -63,7 +63,7 @@ class GameService {
 
     protected Game createOrUpdate(Integer gameNumber, LocalDate date, LocalTime time, AgeGroup ageGroup,
                         Field field, League league) {
-        Game game = Game.findOrCreateByGameNumber(gameNumber)
+        Game game = Game.findOrCreateByGameNumberAndLeague(gameNumber, league)
         game.gameNumber = gameNumber
         game.date = date
         game.time = time

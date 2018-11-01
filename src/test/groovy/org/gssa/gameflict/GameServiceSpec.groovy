@@ -52,6 +52,23 @@ class GameServiceSpec extends HibernateSpec implements ServiceUnitTest<GameServi
         game.time.equals(tenAm)
     }
 
+    void "test game update - same game number but different league"() {
+        when:
+        League gssaRec = League.findByName("GSSA Rec Fall 2018")
+        League gssaNMSCL = League.findByName("GSSA NMCSL Fall 2018")
+        Field mm1 = Field.findByName("MM1")
+        Game game = service.createOrUpdate(409, oct31, nineAm, AgeGroup.U9, mm1, gssaRec)
+        Game game2 = service.createOrUpdate(409, nov1, tenAm, AgeGroup.U13, mm1, gssaNMSCL)
+        List<Game> gameList = Game.list()
+
+        then:
+        gameList.size() == 2
+        game.gameNumber == 409
+        game.league.name == "GSSA Rec Fall 2018"
+        game2.gameNumber == 409
+        game2.league.name == "GSSA NMCSL Fall 2018"
+    }
+
     void "test match ageGroup"() {
         when:
         AgeGroup u9AgeGroup = service.matchAgeGroup("U9")
