@@ -40,7 +40,7 @@ class GameIntSpec extends Specification {
 
         then:
         games.size() == 4
-        games[0].gameNumber == 200
+        games[0].gameNumber == 202
     }
 
     void "test query all games - no date passed"() {
