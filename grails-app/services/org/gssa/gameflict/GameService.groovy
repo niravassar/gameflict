@@ -29,17 +29,16 @@ class GameService {
         games
     }
 
-    Map<String, List<Game>> findAllAndGroupByFieldAndDate() {
-        List<Game> games = Game.list()
-        def byFieldAndLocalDate= { game ->
-            "${game.field}-${game.date}"
+    List<GameConflict> calculateAllGameConflicts() {
+        Map<String, List<Game>> groups = findAllGamesAndGroupByFieldAndDate()
+        List<GameConflict> allGameConflicts = []
+        Set<String> keys = groups.keySet()
+        for ( key in keys ) {
+            List<Game> gamesByDayAndField = groups.get(key)
+            List<GameConflict> gameConflicts = calculateGameConflictsForOneGroup(key, gamesByDayAndField)
+            allGameConflicts.addAll(gameConflicts)
         }
-        def groups = games.groupBy(byFieldAndLocalDate)
-        groups
-    }
-
-    List<GameConflict> calculateAllGameConflicts(Map<String, List<Game>> groups) {
-
+        allGameConflicts
     }
 
     /**************************** protected **************************************************/
@@ -72,6 +71,15 @@ class GameService {
         game.league = league
         game.save()
         game
+    }
+
+    protected Map<String, List<Game>> findAllGamesAndGroupByFieldAndDate() {
+        List<Game> games = Game.list()
+        def byFieldAndLocalDate= { game ->
+            "${game.field}-${game.date}"
+        }
+        def groups = games.groupBy(byFieldAndLocalDate)
+        groups
     }
 
     protected List<GameConflict> calculateGameConflictsForOneGroup(String key, List<Game> games) {

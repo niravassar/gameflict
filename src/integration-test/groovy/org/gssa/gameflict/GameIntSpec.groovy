@@ -45,7 +45,7 @@ class GameIntSpec extends Specification {
 
     void "test groupBy date and field"() {
         when:
-        Map<String, List<Game>> groups = gameService.findAllAndGroupByFieldAndDate()
+        Map<String, List<Game>> groups = gameService.findAllGamesAndGroupByFieldAndDate()
         Set<String> keys = groups.keySet()
         List<Game> mm2GamesOct28 = groups.get(keys[0])
 
@@ -58,7 +58,7 @@ class GameIntSpec extends Specification {
 
     void "test conflicts for one group - conflict exists"() {
         when:
-        Map<String, List<Game>> groups = gameService.findAllAndGroupByFieldAndDate()
+        Map<String, List<Game>> groups = gameService.findAllGamesAndGroupByFieldAndDate()
         Set<String> keys = groups.keySet()
         List<Game> mm2GamesOct28 = groups.get(keys[0])
         List<GameConflict> gameConflicts = gameService.calculateGameConflictsForOneGroup(keys[0], mm2GamesOct28)
@@ -71,12 +71,22 @@ class GameIntSpec extends Specification {
 
     void "test conflicts for one group - no conflicts"() {
         when:
-        Map<String, List<Game>> groups = gameService.findAllAndGroupByFieldAndDate()
+        Map<String, List<Game>> groups = gameService.findAllGamesAndGroupByFieldAndDate()
         Set<String> keys = groups.keySet()
         List<Game> mm2GamesNov15 = groups.get(keys[3])
         List<GameConflict> gameConflicts = gameService.calculateGameConflictsForOneGroup(keys[3], mm2GamesNov15)
 
         then:
         gameConflicts.size() == 0
+    }
+
+    void "test conflicts for all groups"() {
+        when:
+        List<GameConflict> gameConflicts = gameService.calculateAllGameConflicts()
+
+        then:
+        gameConflicts.size() == 2
+        gameConflicts[1].key == "MM2A-2018-10-28"
+        gameConflicts[1].game1.gameNumber == 201
     }
 }
