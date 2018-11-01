@@ -16,7 +16,7 @@ class FieldCreator {
             {"name": "OG5B",  "fieldNickNames": ["GSSA Oak Grove Park #5B", "Oakgrove #5B"]},
             {"name": "OG6",  "fieldNickNames": ["GSSA Oak Grove Park #6", "Oakgrove #6"]}, 
             
-            {"name": "MM1",  "fieldNickNames": ["GSSA Meadowmere Park #1", "Meadowmere #1"]},            
+            {"name": "MM1",  "fieldNickNames": ["GSSA Meadowmere #1", "Meadowmere #1"]},            
             {"name": "MM2A",  "fieldNickNames": ["GSSA Meadowmere #2A", "Meadowmere #2A"]},            
             {"name": "MM2B",  "fieldNickNames": ["GSSA Meadowmere #2B", "Meadowmere #2B"]},  
             {"name": "MM3",  "fieldNickNames": ["GSSA Meadowmere #3", "Meadowmere #3"]},           
@@ -42,11 +42,11 @@ class FieldCreator {
 
     static String leaguesString = '''
         [
-            {"name": "GSSA Rec", "season": "Fall 2018"},
-            {"name": "GSSA NMCSL", "season": "Fall 2018"},
-            {"name": "GSSA Adult", "season": "Fall 2018"},
-            {"name": "U90C", "season": "Fall 2018"},                     
-            {"name": "GMSL", "season": "Fall 2018"}                    
+            {"name": "GSSA Rec Fall 2018"},
+            {"name": "GSSA NMCSL Fall 2018"},
+            {"name": "GSSA Adult Fall 2018"},
+            {"name": "U90C Fall 2018"},                     
+            {"name": "GMSL Fall 2018"}                    
         ]'''
 
     void createFields() {

@@ -13,7 +13,6 @@ class BootStrap {
         if (Field.count() < 1) {
             fieldCreator.createFields()
             fieldCreator.createLeagues()
-            createSampleGame()
         }
 
 
@@ -22,10 +21,10 @@ class BootStrap {
     }
 
     private Game createSampleGame() {
-        League gssaRec = League.findByName("GSSA Rec")
+        League gssaRecFall2018 = League.findByName("GSSA Rec Fall 2018")
         Field mm1 = Field.findByName("MM1")
         LocalTime nineAm = LocalTime.of(9,00)
         LocalDate Oct31 = LocalDate.of(2018, 10, 31)
-        gameService.createOrUpdate(409, Oct31, nineAm, AgeGroup.U9, mm1, gssaRec)
+        gameService.createOrUpdate(409, Oct31, nineAm, AgeGroup.U9, mm1, gssaRecFall2018)
     }
 }

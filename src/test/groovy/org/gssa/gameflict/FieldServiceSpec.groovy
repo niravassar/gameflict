@@ -15,7 +15,7 @@ class FieldServiceSpec extends HibernateSpec implements ServiceUnitTest<FieldSer
 
     void "test find field by nickname"() {
         when:
-        Field mm1 = service.findFieldByName("GSSA Meadowmere Park #1")
+        Field mm1 = service.findFieldByName("GSSA Meadowmere #1")
         Field og1 = service.findFieldByName("Oakgrove #1")
 
         then:

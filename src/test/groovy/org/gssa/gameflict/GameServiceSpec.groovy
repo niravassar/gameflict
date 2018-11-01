@@ -23,7 +23,7 @@ class GameServiceSpec extends HibernateSpec implements ServiceUnitTest<GameServi
 
     void "test create game"() {
         when:
-        League gssaRec = League.findByName("GSSA Rec")
+        League gssaRec = League.findByName("GSSA Rec Fall 2018")
         Field mm1 = Field.findByName("MM1")
         Game game = service.createOrUpdate(409, oct31, nineAm,AgeGroup.U9, mm1, gssaRec)
         List<Game> gameList = Game.list()
@@ -38,7 +38,7 @@ class GameServiceSpec extends HibernateSpec implements ServiceUnitTest<GameServi
 
     void "test game is updated when time is changed"() {
         when:
-        League gssaRec = League.findByName("GSSA Rec")
+        League gssaRec = League.findByName("GSSA Rec Fall 2018")
         Field mm1 = Field.findByName("MM1")
         Game game = service.createOrUpdate(409, oct31, nineAm, AgeGroup.U9, mm1, gssaRec)
         game = service.createOrUpdate(409, nov1, tenAm, AgeGroup.U9, mm1, gssaRec)
@@ -82,5 +82,22 @@ class GameServiceSpec extends HibernateSpec implements ServiceUnitTest<GameServi
         then:
         localTime1.toString() == "09:00"
         localTime2.toString() == "14:15"
+    }
+
+    void "test gameEntry"() {
+        given:
+        def mockFieldService = Mock(FieldService)
+        service.fieldService = mockFieldService
+
+        when:
+        service.gameEntry(205, "10/28/2018","09:00:00 AM","U9",
+                "MM1","GSSA Rec Fall 2018")
+        Game game = Game.findByGameNumber(205)
+
+        then:
+        1 * mockFieldService.findFieldByName("MM1") >> Field.findByName("MM1")
+        game.gameNumber == 205
+        game.date.toString() == "2018-10-28"
+        game.ageGroup.duration == 1.25
     }
 }
