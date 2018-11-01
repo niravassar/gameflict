@@ -35,7 +35,7 @@ class GameService {
         games
     }
 
-    def findAllAndGroupByFieldAndDate() {
+    Map<String, List<Game>> findAllAndGroupByFieldAndDate() {
         List<Game> games = Game.list()
         def byFieldAndLocalDate= { game ->
             "${game.field}-${game.date}"
