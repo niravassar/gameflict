@@ -2,7 +2,6 @@ package org.gssa.gameflict
 
 import grails.testing.mixin.integration.Integration
 import grails.transaction.*
-import org.codehaus.groovy.runtime.GStringImpl
 import spock.lang.Specification
 
 import java.time.LocalDate
@@ -25,6 +24,8 @@ class GameIntSpec extends Specification {
                 "Oakgrove #1","GSSA Rec Fall 2018")
         gameService.gameEntry(204, "11/15/2018","10:00:00 AM","U9",
                 "GSSA Meadowmere #2A","GSSA Rec Fall 2018")
+        gameService.gameEntry(205, "11/15/2018","12:00:00 PM","U10",
+                "GSSA Meadowmere #2A","GSSA Rec Fall 2018")
 
     }
 
@@ -32,25 +33,17 @@ class GameIntSpec extends Specification {
     }
 
     void "test query all games by date"() {
-        setup:
-        List<Game> gameList = Game.list()
-        assert gameList.size() == 5
-
         when:
         LocalDate localDate = gameService.parseDate("10/29/2018")
         Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant())
         List<Game> games = gameService.findAllGamesAfterDate(date)
 
         then:
-        games.size() == 3
+        games.size() == 4
         games[0].gameNumber == 202
     }
 
     void "test query all games by field and day"() {
-        setup:
-        List<Game> gameList = Game.list()
-        assert gameList.size() == 5
-
         when:
         LocalDate localDate = gameService.parseDate("10/28/2018")
         Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant())
@@ -74,5 +67,18 @@ class GameIntSpec extends Specification {
         mm2GamesOct28.size() == 2
         mm2GamesOct28[0].gameNumber == 200
         mm2GamesOct28[1].gameNumber == 201
+    }
+
+    void "test conflicts for one group - conflict exists"() {
+        when:
+        Map<String, List<Game>> groups = gameService.findAllAndGroupByFieldAndDate()
+        Set<String> keys = groups.keySet()
+        List<Game> mm2GamesOct28 = groups.get(keys[0])
+        List<GameConflict> gameConflicts = gameService.calculateGameConflictsForOneGroup(keys[0], mm2GamesOct28)
+
+        then:
+        gameConflicts.size() == 2
+        gameConflicts[0].key == "MM2A-2018-10-28"
+        gameConflicts[0].game1.gameNumber == 200
     }
 }

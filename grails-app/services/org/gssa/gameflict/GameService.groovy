@@ -43,6 +43,11 @@ class GameService {
         def groups = games.groupBy(byFieldAndLocalDate)
         groups
     }
+
+    List<GameConflict> calculateAllGameConflicts(Map<String, List<Game>> groups) {
+
+    }
+
     /**************************** protected **************************************************/
 
     protected LocalDate parseDate(String dateAsString) {
@@ -73,5 +78,20 @@ class GameService {
         game.league = league
         game.save()
         game
+    }
+
+    protected List<GameConflict> calculateGameConflictsForOneGroup(String key, List<Game> games) {
+        List<GameConflict> gameConflicts = []
+        for (x in games) {
+            for (y in games) {
+                if (x.gameNumber == y.gameNumber) {
+                    // do nothing
+                } else if (x.isGameOverlapping(y)) {
+                    GameConflict gameConflict = new GameConflict(key: key, game1: x, game2: y)
+                    gameConflicts << gameConflict
+                }
+            }
+        }
+        gameConflicts
     }
 }
