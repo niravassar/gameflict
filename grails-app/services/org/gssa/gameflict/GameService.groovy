@@ -29,12 +29,6 @@ class GameService {
         games
     }
 
-    List<Game> findAllGamesByFieldAndDate(Date date, Field field) {
-        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
-        List<Game> games = Game.findAllByDateAndField(localDate, field)
-        games
-    }
-
     Map<String, List<Game>> findAllAndGroupByFieldAndDate() {
         List<Game> games = Game.list()
         def byFieldAndLocalDate= { game ->

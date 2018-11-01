@@ -43,19 +43,6 @@ class GameIntSpec extends Specification {
         games[0].gameNumber == 202
     }
 
-    void "test query all games by field and day"() {
-        when:
-        LocalDate localDate = gameService.parseDate("10/28/2018")
-        Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant())
-        Field field = Field.findByName("MM2A")
-        List<Game> games = gameService.findAllGamesByFieldAndDate(date, field)
-
-        then:
-        games.size() == 2
-        games[0].gameNumber == 200
-        games[1].gameNumber == 201
-    }
-
     void "test groupBy date and field"() {
         when:
         Map<String, List<Game>> groups = gameService.findAllAndGroupByFieldAndDate()
