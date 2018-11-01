@@ -36,11 +36,20 @@ class GameIntSpec extends Specification {
         when:
         LocalDate localDate = gameService.parseDate("10/29/2018")
         Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant())
-        List<Game> games = gameService.findAllGamesAfterDate(date)
+        List<Game> games = gameService.findAllGamesOrAfterDate(date)
 
         then:
         games.size() == 4
-        games[0].gameNumber == 202
+        games[0].gameNumber == 200
+    }
+
+    void "test query all games - no date passed"() {
+        when:
+        List<Game> games = gameService.findAllGamesOrAfterDate()
+
+        then:
+        games.size() == 6
+        games[0].gameNumber == 200
     }
 
     void "test groupBy date and field"() {

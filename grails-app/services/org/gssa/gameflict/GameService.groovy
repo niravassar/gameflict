@@ -23,10 +23,15 @@ class GameService {
         return createOrUpdate(gameNumber, date, time, ageGroup, field, league)
     }
 
-    List<Game> findAllGamesAfterDate(Date date) {
-        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
-        List<Game> games = Game.findAllByDateGreaterThanEquals(localDate)
-        games
+    List<Game> findAllGamesOrAfterDate(Date date = null) {
+        if (date) {
+            LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
+            List<Game> games = Game.findAllByDateGreaterThanEquals(localDate)
+            games
+        } else {
+            Game.list()
+        }
+
     }
 
     List<GameConflict> calculateAllGameConflicts() {
@@ -74,7 +79,7 @@ class GameService {
     }
 
     protected Map<String, List<Game>> findAllGamesAndGroupByFieldAndDate() {
-        List<Game> games = Game.list()
+        List<Game> games = findAllGamesOrAfterDate()
         def byFieldAndLocalDate= { game ->
             "${game.field}-${game.date}"
         }
