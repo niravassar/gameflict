@@ -11,4 +11,12 @@ class Game {
     AgeGroup ageGroup
     Field field
     League league
+
+    GameBlockTime getGameBlockTime() {
+        GameBlockTime gameBlockTime = new GameBlockTime()
+        gameBlockTime.game = this
+        gameBlockTime.startTime = time
+        gameBlockTime.endTime = time.plusMinutes(ageGroup.durationMinutes)
+        gameBlockTime
+    }
 }

@@ -59,9 +59,9 @@ class GameServiceSpec extends HibernateSpec implements ServiceUnitTest<GameServi
 
         then:
         u9AgeGroup.name() == "U9"
-        u9AgeGroup.duration == 1.25
+        u9AgeGroup.durationMinutes == 75
         u13AgeGroup.name()  == "U13"
-        u13AgeGroup.duration == 1.5
+        u13AgeGroup.durationMinutes == 90
     }
 
     void "test parse localdate"() {
@@ -98,6 +98,23 @@ class GameServiceSpec extends HibernateSpec implements ServiceUnitTest<GameServi
         1 * mockFieldService.findFieldByName("MM1") >> Field.findByName("MM1")
         game.gameNumber == 205
         game.date.toString() == "2018-10-28"
-        game.ageGroup.duration == 1.25
+        game.ageGroup.durationMinutes == 75
     }
+
+    void "test game block time"() {
+        when:
+        League gssaRec = League.findByName("GSSA Rec Fall 2018")
+        Field mm1 = Field.findByName("MM1")
+        Game game = service.createOrUpdate(409, oct31, nineAm,AgeGroup.U9, mm1, gssaRec)
+        List<Game> gameList = Game.list()
+        GameBlockTime gameBlockTime = game.gameBlockTime
+
+        then:
+        gameList.size() == 1
+        gameBlockTime.game.gameNumber == 409
+        gameBlockTime.startTime.toString() == "09:00"
+        gameBlockTime.endTime.toString() == "10:15"
+
+    }
+
 }

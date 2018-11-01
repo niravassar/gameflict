@@ -34,7 +34,7 @@ class GameIntSpec extends Specification {
     void "test query all games by date"() {
         setup:
         List<Game> gameList = Game.list()
-        assert gameList.size() == 4
+        assert gameList.size() == 5
 
         when:
         LocalDate localDate = gameService.parseDate("10/29/2018")
@@ -42,14 +42,14 @@ class GameIntSpec extends Specification {
         List<Game> games = gameService.findAllGamesAfterDate(date)
 
         then:
-        games.size() == 2
+        games.size() == 3
         games[0].gameNumber == 202
     }
 
     void "test query all games by field and day"() {
         setup:
         List<Game> gameList = Game.list()
-        assert gameList.size() == 4
+        assert gameList.size() == 5
 
         when:
         LocalDate localDate = gameService.parseDate("10/28/2018")

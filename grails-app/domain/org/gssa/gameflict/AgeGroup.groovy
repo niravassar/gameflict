@@ -2,26 +2,26 @@ package org.gssa.gameflict;
 
 enum AgeGroup {
 
-    U4(1.5),
-    U5(1.5),
-    U6(1.0),
-    U7(1.0),
-    U8(1.0),
-    U9(1.25),
-    U10(1.25),
-    U11(1.5),
-    U12(1.5),
-    U13(1.5),
-    U14(2.0),
-    U15(2.0),
-    U16(2.0),
-    U17(2.0),
-    U18(2.0)
+    U4(90),
+    U5(90),
+    U6(90),
+    U7(60),
+    U8(60),
+    U9(75),
+    U10(75),
+    U11(90),
+    U12(90),
+    U13(90),
+    U14(120),
+    U15(120),
+    U16(120),
+    U17(120),
+    U18(120)
 
-    Double duration
+    Long durationMinutes
 
-    AgeGroup(BigDecimal duration) {
-        this.duration = duration
+    AgeGroup(Long durationMinutes) {
+        this.durationMinutes = durationMinutes
     }
 
 }
