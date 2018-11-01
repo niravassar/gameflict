@@ -81,4 +81,15 @@ class GameIntSpec extends Specification {
         gameConflicts[0].key == "MM2A-2018-10-28"
         gameConflicts[0].game1.gameNumber == 200
     }
+
+    void "test conflicts for one group - no conflicts"() {
+        when:
+        Map<String, List<Game>> groups = gameService.findAllAndGroupByFieldAndDate()
+        Set<String> keys = groups.keySet()
+        List<Game> mm2GamesNov15 = groups.get(keys[3])
+        List<GameConflict> gameConflicts = gameService.calculateGameConflictsForOneGroup(keys[3], mm2GamesNov15)
+
+        then:
+        gameConflicts.size() == 0
+    }
 }
