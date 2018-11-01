@@ -2,6 +2,9 @@ package org.gssa.gameflict
 
 import grails.gorm.transactions.Transactional
 
+/**
+ * Finds fields by nickname
+ */
 @Transactional
 class FieldService {
 

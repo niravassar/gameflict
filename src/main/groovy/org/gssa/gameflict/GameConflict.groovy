@@ -1,5 +1,8 @@
 package org.gssa.gameflict
 
+/**
+ * Gathers together a game conflict information
+ */
 class GameConflict {
     String key
     Game game1

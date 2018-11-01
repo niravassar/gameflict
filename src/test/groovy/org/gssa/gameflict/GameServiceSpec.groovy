@@ -93,8 +93,8 @@ class GameServiceSpec extends HibernateSpec implements ServiceUnitTest<GameServi
 
     void "test parse localtime"() {
         when:
-        LocalTime localTime1 = service.parseTime("09:00:00 AM")
-        LocalTime localTime2 = service.parseTime("02:15:00 PM")
+        LocalTime localTime1 = service.parseTime("9:00 AM")
+        LocalTime localTime2 = service.parseTime("2:15 PM")
 
         then:
         localTime1.toString() == "09:00"
@@ -107,7 +107,7 @@ class GameServiceSpec extends HibernateSpec implements ServiceUnitTest<GameServi
         service.fieldService = mockFieldService
 
         when:
-        service.gameEntry(205, "10/28/2018","09:00:00 AM","U9",
+        service.gameEntry(205, "10/28/2018","9:00 AM","U9",
                 "MM1","GSSA Rec Fall 2018")
         Game game = Game.findByGameNumber(205)
 

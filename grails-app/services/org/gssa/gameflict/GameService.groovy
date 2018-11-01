@@ -7,6 +7,9 @@ import java.time.LocalTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 
+/**
+ * Creates game entries, calculates conflicts and queries games
+ */
 @Transactional
 class GameService {
 
@@ -55,7 +58,7 @@ class GameService {
     }
 
     protected LocalTime parseTime(String timeAsString) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss a")
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm a")
         LocalTime localTime = LocalTime.parse(timeAsString, formatter)
         localTime
     }

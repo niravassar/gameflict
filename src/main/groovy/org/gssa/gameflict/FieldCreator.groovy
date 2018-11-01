@@ -2,6 +2,9 @@ package org.gssa.gameflict
 
 import groovy.json.JsonSlurper
 
+/**
+ * Creates the default fields for GSSA
+ */
 class FieldCreator {
 
     JsonSlurper jsonSlurper = new JsonSlurper()

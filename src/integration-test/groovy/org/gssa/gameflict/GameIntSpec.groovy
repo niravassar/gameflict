@@ -14,17 +14,17 @@ class GameIntSpec extends Specification {
     GameService gameService
 
     def setup() {
-        gameService.gameEntry(200, "10/28/2018","09:00:00 AM","U9",
+        gameService.gameEntry(200, "10/28/2018","9:00 AM","U9",
                 "GSSA Meadowmere #2A","GSSA Rec Fall 2018")
-        gameService.gameEntry(201, "10/28/2018","10:00:00 AM","U9",
+        gameService.gameEntry(201, "10/28/2018","10:00 AM","U9",
                 "GSSA Meadowmere #2A","GSSA Rec Fall 2018")
-        gameService.gameEntry(202, "10/31/2018","10:15:00 AM","U10",
+        gameService.gameEntry(202, "10/31/2018","10:15 AM","U10",
                 "GSSA Oak Grove Park #5A","GSSA Rec Fall 2018")
-        gameService.gameEntry(203, "11/15/2018","05:15:00 PM","U13",
+        gameService.gameEntry(203, "11/15/2018","5:15 PM","U13",
                 "Oakgrove #1","GSSA Rec Fall 2018")
-        gameService.gameEntry(204, "11/15/2018","10:00:00 AM","U9",
+        gameService.gameEntry(204, "11/15/2018","10:00 AM","U9",
                 "GSSA Meadowmere #2A","GSSA Rec Fall 2018")
-        gameService.gameEntry(205, "11/15/2018","12:00:00 PM","U10",
+        gameService.gameEntry(205, "11/15/2018","12:00 PM","U10",
                 "GSSA Meadowmere #2A","GSSA Rec Fall 2018")
 
     }

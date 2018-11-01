@@ -1,9 +1,9 @@
 package org.gssa.gameflict
 
+import grails.test.hibernate.HibernateSpec
 import grails.testing.services.ServiceUnitTest
-import spock.lang.Specification
 
-class GameCsvImportServiceSpec extends Specification implements ServiceUnitTest<GameCsvImportService>{
+class GameCsvImportServiceSpec extends HibernateSpec implements ServiceUnitTest<GameCsvImportService>{
 
     static final String SAMPLE_XLS_PATH = "src/integration-test/resources"
 

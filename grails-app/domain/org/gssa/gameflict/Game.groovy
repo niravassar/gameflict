@@ -3,6 +3,9 @@ package org.gssa.gameflict
 import java.time.LocalDate
 import java.time.LocalTime
 
+/**
+ * Information for a game entry
+ */
 class Game {
 
     Integer gameNumber
