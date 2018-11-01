@@ -9,12 +9,24 @@ class GameCsvImportServiceSpec extends Specification implements ServiceUnitTest<
 
     void "test parse csv"() {
         when:
-        File gameXls = new File("$SAMPLE_XLS_PATH/GSSARECF186_sample.csv")
-        List<String[]> gameCsvValues = service.parseCsv(gameXls.path)
+        File gameCsv = new File("$SAMPLE_XLS_PATH/GSSARECF186_sample.csv")
+        List<String[]> gameCsvValues = service.parseCsv(gameCsv.path)
 
         then:
         gameCsvValues.size() == 6
         gameCsvValues[0].toString() == "[935, 10/27/2018, 9:00 AM, U8, GSSA Bob Jones #1A]"
         gameCsvValues[5].toString() == "[971, 11/06/2018, 7:15 PM, U8, GSSA Meadowmere #4C]"
+    }
+
+    void "test convert to gamerows"() {
+        when:
+        File gameCsv = new File("$SAMPLE_XLS_PATH/GSSARECF186_sample.csv")
+        List<String[]> gameCsvValues = service.parseCsv(gameCsv.path)
+        List<GameRow> gameRows = service.convertIntoGameRows(gameCsvValues)
+
+        then:
+        gameRows.size() == 6
+        gameRows[3].gameNumber == 513
+        gameRows[3].dateAsString == "10/28/2018"
     }
 }

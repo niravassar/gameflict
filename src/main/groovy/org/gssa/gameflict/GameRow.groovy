@@ -6,5 +6,4 @@ class GameRow {
     String timeAsString
     String ageGroupAsString
     String fieldName
-    String leagueName
 }
