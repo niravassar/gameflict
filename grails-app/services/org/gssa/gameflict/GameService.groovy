@@ -13,6 +13,9 @@ import java.time.format.DateTimeFormatter
 @Transactional
 class GameService {
 
+    public static final String DATE_FORMAT = "MM/dd/yyyy"
+    public static final String TIME_FORMAT = "h:mm a"
+
     FieldService fieldService
 
     Game gameEntry(Integer gameNumber, String dateAsString, String timeAsString, String ageGroupAsString, String fieldName,
@@ -37,8 +40,8 @@ class GameService {
 
     }
 
-    List<GameConflict> calculateAllGameConflicts() {
-        Map<String, List<Game>> groups = findAllGamesAndGroupByFieldAndDate()
+    List<GameConflict> calculateAllGameConflicts(Date date = null) {
+        Map<String, List<Game>> groups = findAllGamesAndGroupByFieldAndDate(date)
         List<GameConflict> allGameConflicts = []
         Set<String> keys = groups.keySet()
         for ( key in keys ) {
@@ -52,13 +55,13 @@ class GameService {
     /**************************** protected **************************************************/
 
     protected LocalDate parseDate(String dateAsString) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy")
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT)
         LocalDate localDate = LocalDate.parse(dateAsString, formatter)
         localDate
     }
 
     protected LocalTime parseTime(String timeAsString) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm a")
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(TIME_FORMAT)
         LocalTime localTime = LocalTime.parse(timeAsString, formatter)
         localTime
     }
@@ -81,8 +84,8 @@ class GameService {
         game
     }
 
-    protected Map<String, List<Game>> findAllGamesAndGroupByFieldAndDate() {
-        List<Game> games = findAllGamesOrAfterDate()
+    protected Map<String, List<Game>> findAllGamesAndGroupByFieldAndDate(Date date = null) {
+        List<Game> games = findAllGamesOrAfterDate(date)
         def byFieldAndLocalDate= { game ->
             "${game.field}-${game.date}"
         }
