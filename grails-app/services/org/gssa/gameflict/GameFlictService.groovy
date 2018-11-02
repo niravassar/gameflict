@@ -20,7 +20,7 @@ class GameFlictService {
         }
     }
 
-    List<GamesExport> createGameExport(Date date = null) {
+    GamesExport createGamesExport(Date date = null) {
         List<Game> games = gameService.findAllGamesOrAfterDate(date)
         List<GameConflict> gameConflicts = gameService.calculateGameConflictsAfterDate(date)
         GamesExport gamesExport = new GamesExport()

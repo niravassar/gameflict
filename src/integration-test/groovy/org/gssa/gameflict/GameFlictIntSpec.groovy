@@ -116,4 +116,20 @@ class GameFlictIntSpec extends Specification {
         gameConflicts[0].key == "MM2A-2018-10-28"
         gameConflicts[0].game1.gameNumber == 515
     }
+
+    void "test all game export with conflicts"() {
+        when:
+        String gssaRec = "GSSA Rec Fall 2018"
+        String gssaNmcsl = "GSSA NMCSL Fall 2018"
+        File gameCsv1 = new File("$SAMPLE_XLS_PATH/GSSARECF186_sample_with_conflict.csv")
+        File gameCsv2 = new File("$SAMPLE_XLS_PATH/GSSANMCSL7_sample.csv")
+        gameFlictService.importAndSaveGames(gameCsv1.path, gssaRec)
+        gameFlictService.importAndSaveGames(gameCsv2.path, gssaNmcsl)
+        GamesExport gamesExport = gameFlictService.createGamesExport()
+
+
+        then:
+        gamesExport.games.size() == 12
+        gamesExport.gameConflicts.size() == 2
+    }
 }
