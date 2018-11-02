@@ -91,7 +91,7 @@ class GameIntSpec extends Specification {
 
     void "test conflicts for all groups"() {
         when:
-        List<GameConflict> gameConflicts = gameService.calculateAllGameConflicts()
+        List<GameConflict> gameConflicts = gameService.calculateGameConflictsAfterDate()
 
         then:
         gameConflicts.size() == 2

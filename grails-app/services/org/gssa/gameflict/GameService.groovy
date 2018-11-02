@@ -40,7 +40,7 @@ class GameService {
 
     }
 
-    List<GameConflict> calculateAllGameConflicts(Date date = null) {
+    List<GameConflict> calculateGameConflictsAfterDate(Date date = null) {
         Map<String, List<Game>> groups = findAllGamesAndGroupByFieldAndDate(date)
         List<GameConflict> allGameConflicts = []
         Set<String> keys = groups.keySet()

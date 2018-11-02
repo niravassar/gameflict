@@ -19,4 +19,13 @@ class GameFlictService {
                                     gameRow.fieldName, leagueName)
         }
     }
+
+    List<GamesExport> createGameExport(Date date = null) {
+        List<Game> games = gameService.findAllGamesOrAfterDate(date)
+        List<GameConflict> gameConflicts = gameService.calculateGameConflictsAfterDate(date)
+        GamesExport gamesExport = new GamesExport()
+        gamesExport.games.addAll(games)
+        gamesExport.gameConflicts.addAll(gameConflicts)
+        gamesExport
+    }
 }

@@ -32,4 +32,9 @@ class Game {
 
         startOverLap || endOverLap
     }
+
+    @Override
+    String toString() {
+        gameNumber
+    }
 }
