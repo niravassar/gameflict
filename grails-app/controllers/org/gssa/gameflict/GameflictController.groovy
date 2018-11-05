@@ -26,13 +26,13 @@ class GameflictController {
 
         if (fileName.isEmpty() || leagueName.isEmpty()) {
             flash.message = 'The uploaded file is empty or the league is not selected!'
-            return redirect(action:'index')
+            return render(view:'index', model: [messageType: "fail"])
         } else {
             int numOfGames = gameflictService.importAndSaveGames(fileName, leagueName)
             if (numOfGames > 0) {
                 flash.message = "Uploaded $numOfGames games from ${fileName} with league ${leagueName}"
             }
-            return redirect(action:'index')
+            return render(view:'index', model: [messageType: "success"])
         }
     }
 
@@ -69,7 +69,7 @@ class GameflictController {
         }
 
         // write the file to local file
-        File newFile = new File("${csvFile.getOriginalFilename()}.bak")
+        File newFile = new File("${csvFile.getOriginalFilename()}.copy")
         FileOutputStream outputStream = new FileOutputStream(newFile)
         byte[] bytes = csvFile.getBytes()
         outputStream.write(bytes)

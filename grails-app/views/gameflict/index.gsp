@@ -9,9 +9,15 @@
 
     <div id="upload" role="main" class="bg-info">
         <section class="row colset-2-its">
-            <g:if test="${flash.message}">
-                <div class="message" role="alertdialog">
-                    ${flash.message}
+            <br>
+            <g:if test="${flash.message && messageType == "fail"}" >
+                <div class="alert alert-danger" role="alert">
+                    <p><b>${flash.message}</b></p>
+                </div>
+            </g:if>
+            <g:if test="${flash.message && messageType == "success"}" >
+                <div class="alert alert-success" role="alert">
+                    <p><b>${flash.message}</b></p>
                 </div>
             </g:if>
             <g:uploadForm action="uploadGameCsv" >
