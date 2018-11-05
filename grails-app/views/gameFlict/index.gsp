@@ -35,17 +35,17 @@
 
     <hr/>
 
-<div id="createExport" role="main" class="bg-success">
-    <section class="row colset-2-its">
-        <fieldset>
-            <h1 style="font-weight: bold;">Create Games Export</h1>
-        </fieldset>
-        <fieldset>
-            <a class="btn btn-primary" style="text-decoration: none" href="<g:createLink controller="gameFlict" action="createGamesExport"/>">
-                Create Export
-            </a>
-        </fieldset>
-    </section>
-</div>
+    <div id="createExport" role="main" class="bg-success">
+        <section class="row colset-2-its">
+            <fieldset>
+                <h1 style="font-weight: bold;">Create Games Export</h1>
+            </fieldset>
+            <fieldset>
+                <a class="btn btn-primary" style="text-decoration: none" href="<g:createLink controller="gameFlict" action="createGamesExport"/>">
+                    Create Export
+                </a>
+            </fieldset>
+        </section>
+    </div>
 </body>
 </html>
