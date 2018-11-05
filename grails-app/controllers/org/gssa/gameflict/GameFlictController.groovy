@@ -19,6 +19,9 @@ class GameFlictController {
         return redirect(action:'index')
     }
 
+    def createGamesExport() {
+        println "asdkfhasdklfjasdklfj"
+    }
 
     protected String retrieveUploadFileName() {
         MultipartFile csvFile = request.getFile("csvFile") // get Excel file from form

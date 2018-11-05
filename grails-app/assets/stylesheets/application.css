@@ -13,3 +13,11 @@
 *= require mobile
 *= require_self
 */
+hr {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 30px;
+    background-color: purple;
+    opacity: 0.5;
+}

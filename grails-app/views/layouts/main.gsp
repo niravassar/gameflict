@@ -25,9 +25,10 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="/#">
-		    <asset:image src="grails.svg" alt="Grails Logo"/>
+		            <asset:image src="gssaLogo.png" alt="GSSA" />
                 </a>
             </div>
+            <p style="font-family: 'Bookman Old Style'; font-size: 60px; padding: 60px; color: whitesmoke;">GameFlict</p>
             <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0.8px;">
                 <ul class="nav navbar-nav navbar-right">
                     <g:pageProperty name="page.nav" />
