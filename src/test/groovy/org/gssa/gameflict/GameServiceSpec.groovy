@@ -83,12 +83,16 @@ class GameServiceSpec extends HibernateSpec implements ServiceUnitTest<GameServi
 
     void "test parse localdate"() {
         when:
-        LocalDate localDate1 = service.parseDate("08/15/2018")
+        LocalDate localDate1 = service.parseDate("08/15/18")
         LocalDate localDate2 = service.parseDate("10/31/2018")
+        LocalDate localDate3 = service.parseDate("1/1/18")
+        LocalDate localDate4 = service.parseDate("03/1/2018")
 
         then:
         localDate1.toString() == "2018-08-15"
         localDate2.toString() == "2018-10-31"
+        localDate3.toString() == "2018-01-01"
+        localDate4.toString() == "2018-03-01"
     }
 
     void "test parse localtime"() {

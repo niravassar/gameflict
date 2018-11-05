@@ -7,12 +7,13 @@ h2 file database. The user must have java JRE 8 installed.
 
 1. `gradlew packageZip` - executes `assemble` and then zips up bat files alongside the runnable jar for a user to use on desktop. 
 The result is in `build/dist`.
-2. place the jar from `/build/libs` into a separate directory (eg `/gameflict`). Copy the files from `/bat` folder into 
-the same directory as the destination of the jar.
-3. Click on the `startGameflict.bat` file.
+2. Find the file `build/dist/gameflict.zip`. Extract all the contents to a directory. 
+3. Click on the `startGameflict.bat` file. This will start the app in a command window and you will be able to access it on your browser. In the 
+same folder you will see a database file appear, along with a script that can be used to delete the db and start from scratch. 
+When uploading a csv file, the app will make a copy of the file for you. 
 4. go to `http://localhost:9001`.
 
-## Develepment
+## Development
 
 1. `grail run-app` for development mode.
 2. `test-app` runs the full suite of server side tests.

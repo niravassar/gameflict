@@ -36,9 +36,8 @@
             <p>File Formatting</p>
         </div>
         <div class="w3-panel w3-leftbar w3-border-red">
-            <p>The excel file must have the date column formatted as such: MM/DD/YYYY - eg: 10/28/2018/ Note the year must have 4 digits</p>
             <p>The time column must be formatted such as: 9:00 AM.</p>
-            <p>Use excel formatting tools to format the date and time in the excel file</p>
+            <p>Use excel formatting tools to format the time in the excel file</p>
             <br/>
             <p>The excel file must have its columns ordered in this order:</p>
             <p>#, Date , Start, Age ,Field</p>

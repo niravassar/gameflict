@@ -13,7 +13,7 @@ import java.time.format.DateTimeFormatter
 @Transactional
 class GameService {
 
-    public static final String DATE_FORMAT = "MM/dd/yyyy"
+    public static final String DATE_FORMAT = "M/d/[uuuu][uu]"
     public static final String TIME_FORMAT = "h:mm a"
 
     FieldService fieldService
