@@ -69,7 +69,7 @@ class GameflictController {
         }
 
         // write the file to local file
-        File newFile = new File(csvFile.getOriginalFilename())
+        File newFile = new File("${csvFile.getOriginalFilename()}-copy")
         FileOutputStream outputStream = new FileOutputStream(newFile)
         byte[] bytes = csvFile.getBytes()
         outputStream.write(bytes)

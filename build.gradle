@@ -80,10 +80,9 @@ assets {
     minifyCss = true
 }
 
-task packageZip(type: Zip) {
+task packageZip(type: Zip, dependsOn: 'assemble') {
     archiveName = "gameflict.zip"
-    destinationDir = file("${buildDir}/libs}")
-
-    from "bat/**"
-    from "${buildDir}/libs/gameflict-1.0.jar}"
+    destinationDir = file("${buildDir}/dist")
+    from "${buildDir}/libs", "bat"
+    include "*.jar", "*.bat"
 }
