@@ -28,13 +28,13 @@
 		            <asset:image src="gssaLogo.png" alt="GSSA" />
                 </a>
             </div>
-            <p style="font-family: 'Bookman Old Style'; font-size: 60px; padding: 60px; color: whitesmoke;">GameFlict</p>
+            <p style="font-family: 'Bookman Old Style'; font-size: 60px; padding: 60px; color: whitesmoke;">Gameflict</p>
             <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0.8px;">
                 <ul class="nav navbar-nav navbar-right">
                     <g:pageProperty name="page.nav" />
                 </ul>
                 <ul>
-                    <li><a href="<g:createLink controller="gameFlict"/>">Start</a></li>
+                    <li><a href="<g:createLink controller="gameflict"/>">Start</a></li>
                     <li><a href="<g:createLink controller="game"/>">Games</a></li>
                     <li><a href="<g:createLink controller="field"/>">Fields</a></li>
                     <li><a href="<g:createLink controller="fieldNickName"/>">FieldNickNames</a></li>

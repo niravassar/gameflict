@@ -12,7 +12,7 @@
             <p>Sample CSV File</p>
         </div>
         <div class="w3-panel w3-leftbar w3-border-red">
-            <p>Here is a sample CSV File that is compatible with GameFlict. Make sure any file uploaded is similar to
+            <p>Here is a sample CSV File that is compatible with Gameflict. Make sure any file uploaded is similar to
             this one.</p>
             <br/>
             <a class="btn btn-primary" style="text-decoration: none" href="${resource(dir: 'csv', file: "sample_games.csv")}" target="_blank">
@@ -24,7 +24,7 @@
             <p>Summary</p>
         </div>
         <div class="w3-panel w3-leftbar w3-border-red">
-            <p>GameFlict is intended to combine soccer game schedules exported from gotsoccer.  The application
+            <p>Gameflict is intended to combine soccer game schedules exported from gotsoccer.  The application
             will load the schedules into the app database and export a master schedule. It will also calculate game conflicts if
             two games are on the same field at the same time.</p>
             <br/>

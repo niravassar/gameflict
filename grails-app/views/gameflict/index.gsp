@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
-    <title>GameFlict</title>
+    <title>Gameflict</title>
 </head>
 <body>
 
@@ -41,7 +41,7 @@
                 <h1 style="font-weight: bold;">Create Games Export</h1>
             </fieldset>
             <fieldset>
-                <a class="btn btn-primary" style="text-decoration: none" href="<g:createLink controller="gameFlict" action="createGamesExport"/>">
+                <a class="btn btn-primary" style="text-decoration: none" href="<g:createLink controller="gameflict" action="createGamesExport"/>">
                     Create Export
                 </a>
             </fieldset>

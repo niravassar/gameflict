@@ -12,11 +12,11 @@ import java.time.ZoneId
  */
 @Integration
 @Rollback
-class GameFlictIntSpec extends Specification {
+class GameflictIntSpec extends Specification {
 
     static final String SAMPLE_XLS_PATH = "src/integration-test/resources"
 
-    GameFlictService gameFlictService
+    GameflictService gameflictService
     GameService gameService
 
     def setup() {
@@ -31,8 +31,8 @@ class GameFlictIntSpec extends Specification {
         String gssaNmcsl = "GSSA NMCSL Fall 2018"
         File gameCsv1 = new File("$SAMPLE_XLS_PATH/GSSARECF186_sample.csv")
         File gameCsv2 = new File("$SAMPLE_XLS_PATH/GSSANMCSL7_sample.csv")
-        gameFlictService.importAndSaveGames(gameCsv1.path, gssaRec)
-        gameFlictService.importAndSaveGames(gameCsv2.path, gssaNmcsl)
+        gameflictService.importAndSaveGames(gameCsv1.path, gssaRec)
+        gameflictService.importAndSaveGames(gameCsv2.path, gssaNmcsl)
         List<Game> games = Game.list()
 
         then:
@@ -43,7 +43,7 @@ class GameFlictIntSpec extends Specification {
         when:
         String gssaRec = "GSSA Rec Fall 2018"
         File gameCsv1 = new File("$SAMPLE_XLS_PATH/GSSARECF186_sample.csv")
-        gameFlictService.importAndSaveGames(gameCsv1.path, gssaRec)
+        gameflictService.importAndSaveGames(gameCsv1.path, gssaRec)
         List<Game> games = Game.list()
 
         then:
@@ -54,7 +54,7 @@ class GameFlictIntSpec extends Specification {
 
         when:
         File gameCsv2 = new File("$SAMPLE_XLS_PATH/GSSARECF186_sample_game_moved.csv")
-        gameFlictService.importAndSaveGames(gameCsv2.path, gssaRec)
+        gameflictService.importAndSaveGames(gameCsv2.path, gssaRec)
         games = Game.list()
 
         then:
@@ -71,8 +71,8 @@ class GameFlictIntSpec extends Specification {
         String gssaNmcsl = "GSSA NMCSL Fall 2018"
         File gameCsv1 = new File("$SAMPLE_XLS_PATH/GSSARECF186_sample.csv")
         File gameCsv2 = new File("$SAMPLE_XLS_PATH/GSSANMCSL7_sample.csv")
-        gameFlictService.importAndSaveGames(gameCsv1.path, gssaRec)
-        gameFlictService.importAndSaveGames(gameCsv2.path, gssaNmcsl)
+        gameflictService.importAndSaveGames(gameCsv1.path, gssaRec)
+        gameflictService.importAndSaveGames(gameCsv2.path, gssaNmcsl)
 
         LocalDate localDate = gameService.parseDate("11/03/2018")
         Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant())
@@ -91,8 +91,8 @@ class GameFlictIntSpec extends Specification {
         String gssaNmcsl = "GSSA NMCSL Fall 2018"
         File gameCsv1 = new File("$SAMPLE_XLS_PATH/GSSARECF186_sample.csv")
         File gameCsv2 = new File("$SAMPLE_XLS_PATH/GSSANMCSL7_sample.csv")
-        gameFlictService.importAndSaveGames(gameCsv1.path, gssaRec)
-        gameFlictService.importAndSaveGames(gameCsv2.path, gssaNmcsl)
+        gameflictService.importAndSaveGames(gameCsv1.path, gssaRec)
+        gameflictService.importAndSaveGames(gameCsv2.path, gssaNmcsl)
         List<GameConflict> gameConflicts = gameService.calculateGameConflictsAfterDate()
 
 
@@ -106,8 +106,8 @@ class GameFlictIntSpec extends Specification {
         String gssaNmcsl = "GSSA NMCSL Fall 2018"
         File gameCsv1 = new File("$SAMPLE_XLS_PATH/GSSARECF186_sample_with_conflict.csv")
         File gameCsv2 = new File("$SAMPLE_XLS_PATH/GSSANMCSL7_sample.csv")
-        gameFlictService.importAndSaveGames(gameCsv1.path, gssaRec)
-        gameFlictService.importAndSaveGames(gameCsv2.path, gssaNmcsl)
+        gameflictService.importAndSaveGames(gameCsv1.path, gssaRec)
+        gameflictService.importAndSaveGames(gameCsv2.path, gssaNmcsl)
         List<GameConflict> gameConflicts = gameService.calculateGameConflictsAfterDate()
 
 
@@ -123,9 +123,9 @@ class GameFlictIntSpec extends Specification {
         String gssaNmcsl = "GSSA NMCSL Fall 2018"
         File gameCsv1 = new File("$SAMPLE_XLS_PATH/GSSARECF186_sample_with_conflict.csv")
         File gameCsv2 = new File("$SAMPLE_XLS_PATH/GSSANMCSL7_sample.csv")
-        gameFlictService.importAndSaveGames(gameCsv1.path, gssaRec)
-        gameFlictService.importAndSaveGames(gameCsv2.path, gssaNmcsl)
-        GamesExport gamesExport = gameFlictService.createGamesExport()
+        gameflictService.importAndSaveGames(gameCsv1.path, gssaRec)
+        gameflictService.importAndSaveGames(gameCsv2.path, gssaNmcsl)
+        GamesExport gamesExport = gameflictService.createGamesExport()
 
 
         then:

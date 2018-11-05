@@ -1,1 +1,1 @@
-java -jar gameFlict-1.0.jar
+java -jar gameflict-1.0.jar

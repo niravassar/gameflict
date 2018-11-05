@@ -107,4 +107,4 @@ environments:
     production:
         dataSource:
             dbCreate: update
-            url: jdbc:h2:file:./gameFlictDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+            url: jdbc:h2:file:./gameflictDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE

@@ -18,6 +18,7 @@ apply plugin:"idea"
 apply plugin:"org.grails.grails-web"
 apply plugin:"asset-pipeline"
 apply plugin:"org.grails.grails-gsp"
+apply plugin: "base"
 
 repositories {
     mavenLocal()
@@ -77,4 +78,12 @@ tasks.withType(Test) {
 assets {
     minifyJs = true
     minifyCss = true
+}
+
+task packageZip(type: Zip) {
+    archiveName = "gameflict.zip"
+    destinationDir = file("${buildDir}/libs}")
+
+    from "bat/**"
+    from "${buildDir}/libs/gameflict-1.0.jar}"
 }

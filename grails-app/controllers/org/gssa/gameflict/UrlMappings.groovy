@@ -9,7 +9,7 @@ class UrlMappings {
             }
         }
 
-        "/"(controller: "gameFlict")
+        "/"(controller: "gameflict")
         "500"(view:'/error')
         "404"(view:'/notFound')
     }

@@ -1,1 +1,1 @@
-del gameFlictDb.mv.db
+del gameflictDb.mv.db

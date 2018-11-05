@@ -6,7 +6,7 @@ import grails.gorm.transactions.Transactional
  * Orchestrates all the operations
  */
 @Transactional
-class GameFlictService {
+class GameflictService {
 
     GameCsvImportService gameCsvImportService
     GameService gameService

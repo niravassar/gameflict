@@ -9,14 +9,14 @@ import java.time.LocalDate
 
 import static org.springframework.http.HttpStatus.OK
 
-class GameFlictController {
+class GameflictController {
 
     @Value('${grails.mime.types.csv}')
     String csvMimeType
     @Value('${grails.converters.encoding}')
     String encoding
 
-    GameFlictService gameFlictService
+    GameflictService gameflictService
 
     def index() { }
 
@@ -28,7 +28,7 @@ class GameFlictController {
             flash.message = 'The uploaded file is empty or the league is not selected!'
             return redirect(action:'index')
         } else {
-            int numOfGames = gameFlictService.importAndSaveGames(fileName, leagueName)
+            int numOfGames = gameflictService.importAndSaveGames(fileName, leagueName)
             if (numOfGames > 0) {
                 flash.message = "Uploaded $numOfGames games from ${fileName} with league ${leagueName}"
             }
@@ -37,7 +37,7 @@ class GameFlictController {
     }
 
     def createGamesExport() {
-        GamesExport gamesExport = gameFlictService.createGamesExport()
+        GamesExport gamesExport = gameflictService.createGamesExport()
         log.info gamesExport.dump()
 
         List<String> gameExportLines = []
