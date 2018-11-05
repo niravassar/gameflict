@@ -25,7 +25,7 @@ class GameflictIntSpec extends Specification {
     def cleanup() {
     }
 
-    void "test import and save csv files"() {
+    void "test import and save csv files - formatted dates from xls"() {
         when:
         String gssaRec = "GSSA Rec Fall 2018"
         String gssaNmcsl = "GSSA NMCSL Fall 2018"
@@ -37,6 +37,20 @@ class GameflictIntSpec extends Specification {
 
         then:
         games.size() == 12
+    }
+
+    void "test import and save csv files - just column adjustment and save"() {
+        when:
+        String gssaRec = "GSSA Rec Fall 2018"
+        String gssaNmcsl = "GSSA NMCSL Fall 2018"
+        File gameCsv1 = new File("$SAMPLE_XLS_PATH/GSSARECF186_sample_no_formatting.csv")
+        File gameCsv2 = new File("$SAMPLE_XLS_PATH/GSSANMCSL7_sample_no_formatting.csv")
+        gameflictService.importAndSaveGames(gameCsv1.path, gssaRec)
+        gameflictService.importAndSaveGames(gameCsv2.path, gssaNmcsl)
+        List<Game> games = Game.list()
+
+        then:
+        games.size() == 19
     }
 
     void "test one game is updated"() {
