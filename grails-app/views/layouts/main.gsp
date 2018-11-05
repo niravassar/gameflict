@@ -33,6 +33,14 @@
                 <ul class="nav navbar-nav navbar-right">
                     <g:pageProperty name="page.nav" />
                 </ul>
+                <ul>
+                    <li><a href="<g:createLink controller="gameFlict"/>">Start</a></li>
+                    <li><a href="<g:createLink controller="game"/>">Games</a></li>
+                    <li><a href="<g:createLink controller="field"/>">Fields</a></li>
+                    <li><a href="<g:createLink controller="fieldNickName"/>">FieldNickNames</a></li>
+                    <li><a href="<g:createLink controller="league"/>">Leagues</a></li>
+                    <li><a href="<g:createLink controller="help"/>">Help</a></li>
+                </ul>
             </div>
         </div>
     </div>

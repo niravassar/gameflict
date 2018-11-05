@@ -6,5 +6,9 @@ package org.gssa.gameflict
 class GamesExport {
     List<Game> games = []
     List<GameConflict> gameConflicts = []
+
+    static String constructHeaderRow() {
+        ["#","Date","Start","Age","Field", "League"].join(',')
+    }
 }
 

@@ -37,4 +37,8 @@ class Game {
     String toString() {
         gameNumber
     }
+
+    String constructRow() {
+        [gameNumber, date, time, ageGroup, field, league].join(",")
+    }
 }

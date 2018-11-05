@@ -11,13 +11,15 @@ class GameFlictService {
     GameCsvImportService gameCsvImportService
     GameService gameService
 
-    void importAndSaveGames(String fileName, String leagueName) {
+    int importAndSaveGames(String fileName, String leagueName) {
         List<String[]> gameCsvValues = gameCsvImportService.parseCsv(fileName)
         List<GameRow> gameRows = gameCsvImportService.convertIntoGameRows(gameCsvValues)
+        List<Game> games = []
         for (gameRow in gameRows) {
-            gameService.gameEntry(gameRow.gameNumber,gameRow.dateAsString,gameRow.timeAsString,gameRow.ageGroupAsString,
+            games << gameService.gameEntry(gameRow.gameNumber,gameRow.dateAsString,gameRow.timeAsString,gameRow.ageGroupAsString,
                                     gameRow.fieldName, leagueName)
         }
+        games.size()
     }
 
     GamesExport createGamesExport(Date date = null) {
