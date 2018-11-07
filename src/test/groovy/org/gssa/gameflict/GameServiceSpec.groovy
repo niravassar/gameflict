@@ -13,6 +13,8 @@ class GameServiceSpec extends HibernateSpec implements ServiceUnitTest<GameServi
     LocalDate oct31 = LocalDate.of(2018, 10, 31)
     LocalTime tenAm = LocalTime.of(10,00)
     LocalDate nov1 = LocalDate.of(2018, 11, 1)
+    String coachName1 = "Nirav Assar"
+    String coachName2 = "Kirk Challgren"
 
     List<Class> getDomainClasses() { [Field, FieldNickName, Game, League]}
 
@@ -25,7 +27,7 @@ class GameServiceSpec extends HibernateSpec implements ServiceUnitTest<GameServi
         when:
         League gssaRec = League.findByName("GSSA Rec Fall 2018")
         Field mm1 = Field.findByName("MM1")
-        Game game = service.createOrUpdate(409, oct31, nineAm,AgeGroup.U9, mm1, gssaRec)
+        Game game = service.createOrUpdate(409, oct31, nineAm,AgeGroup.U9, mm1, gssaRec, coachName1, coachName2)
         List<Game> gameList = Game.list()
 
         then:
@@ -34,14 +36,16 @@ class GameServiceSpec extends HibernateSpec implements ServiceUnitTest<GameServi
         game.field.name == "MM1"
         game.date.isEqual(oct31)
         game.time.equals(nineAm)
+        game.coachName1 == "Nirav Assar"
+        game.coachName2 == "Kirk Challgren"
     }
 
     void "test game is updated when time is changed"() {
         when:
         League gssaRec = League.findByName("GSSA Rec Fall 2018")
         Field mm1 = Field.findByName("MM1")
-        Game game = service.createOrUpdate(409, oct31, nineAm, AgeGroup.U9, mm1, gssaRec)
-        game = service.createOrUpdate(409, nov1, tenAm, AgeGroup.U9, mm1, gssaRec)
+        Game game = service.createOrUpdate(409, oct31, nineAm, AgeGroup.U9, mm1, gssaRec, coachName1, coachName2)
+        game = service.createOrUpdate(409, nov1, tenAm, AgeGroup.U9, mm1, gssaRec, coachName1, coachName2)
         List<Game> gameList = Game.list()
 
         then:
@@ -50,6 +54,7 @@ class GameServiceSpec extends HibernateSpec implements ServiceUnitTest<GameServi
         game.field.name == "MM1"
         game.date.isEqual(nov1)
         game.time.equals(tenAm)
+        game.coachName1 == "Nirav Assar"
     }
 
     void "test game update - same game number but different league"() {
@@ -57,8 +62,9 @@ class GameServiceSpec extends HibernateSpec implements ServiceUnitTest<GameServi
         League gssaRec = League.findByName("GSSA Rec Fall 2018")
         League gssaNMSCL = League.findByName("GSSA NMCSL Fall 2018")
         Field mm1 = Field.findByName("MM1")
-        Game game = service.createOrUpdate(409, oct31, nineAm, AgeGroup.U9, mm1, gssaRec)
-        Game game2 = service.createOrUpdate(409, nov1, tenAm, AgeGroup.U13, mm1, gssaNMSCL)
+        String coachName1 = "Nirav Assar"
+        Game game = service.createOrUpdate(409, oct31, nineAm, AgeGroup.U9, mm1, gssaRec, coachName1, coachName2)
+        Game game2 = service.createOrUpdate(409, nov1, tenAm, AgeGroup.U13, mm1, gssaNMSCL, coachName1, coachName2)
         List<Game> gameList = Game.list()
 
         then:
@@ -112,7 +118,7 @@ class GameServiceSpec extends HibernateSpec implements ServiceUnitTest<GameServi
 
         when:
         service.gameEntry(205, "10/28/2018","9:00 AM","U9",
-                "MM1","GSSA Rec Fall 2018")
+                "MM1","GSSA Rec Fall 2018",coachName1, coachName2)
         Game game = Game.findByGameNumber(205)
 
         then:
@@ -126,7 +132,7 @@ class GameServiceSpec extends HibernateSpec implements ServiceUnitTest<GameServi
         when:
         League gssaRec = League.findByName("GSSA Rec Fall 2018")
         Field mm1 = Field.findByName("MM1")
-        Game game = service.createOrUpdate(409, oct31, nineAm,AgeGroup.U9, mm1, gssaRec)
+        Game game = service.createOrUpdate(409, oct31, nineAm,AgeGroup.U9, mm1, gssaRec, coachName1, coachName2)
         List<Game> gameList = Game.list()
         GameBlockTime gameBlockTime = game.gameBlockTime
 
@@ -141,8 +147,8 @@ class GameServiceSpec extends HibernateSpec implements ServiceUnitTest<GameServi
         when:
         League gssaRec = League.findByName("GSSA Rec Fall 2018")
         Field mm1 = Field.findByName("MM1")
-        Game game1 = service.createOrUpdate(409, oct31, nineAm, AgeGroup.U9, mm1, gssaRec)
-        Game game2 = service.createOrUpdate(410, oct31, tenAm, AgeGroup.U9, mm1, gssaRec)
+        Game game1 = service.createOrUpdate(409, oct31, nineAm, AgeGroup.U9, mm1, gssaRec, coachName1, coachName2)
+        Game game2 = service.createOrUpdate(410, oct31, tenAm, AgeGroup.U9, mm1, gssaRec, coachName1, coachName2)
         boolean result1 = game1.isGameOverlapping(game2)
         boolean result2 = game2.isGameOverlapping(game1)
         List<Game> gameList = Game.list()
@@ -157,8 +163,8 @@ class GameServiceSpec extends HibernateSpec implements ServiceUnitTest<GameServi
         when:
         League gssaRec = League.findByName("GSSA Rec Fall 2018")
         Field mm1 = Field.findByName("MM1")
-        Game game1 = service.createOrUpdate(409, oct31, nineAm, AgeGroup.U9, mm1, gssaRec)
-        Game game2 = service.createOrUpdate(410, oct31, tenAm.plusHours(1), AgeGroup.U9, mm1, gssaRec)
+        Game game1 = service.createOrUpdate(409, oct31, nineAm, AgeGroup.U9, mm1, gssaRec, coachName1, coachName2)
+        Game game2 = service.createOrUpdate(410, oct31, tenAm.plusHours(1), AgeGroup.U9, mm1, gssaRec, coachName1, coachName2)
         boolean result1 = game1.isGameOverlapping(game2)
         boolean result2 = game2.isGameOverlapping(game1)
         List<Game> gameList = Game.list()

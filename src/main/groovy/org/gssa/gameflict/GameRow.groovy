@@ -9,4 +9,6 @@ class GameRow {
     String timeAsString
     String ageGroupAsString
     String fieldName
+    String coachName1
+    String coachName2
 }

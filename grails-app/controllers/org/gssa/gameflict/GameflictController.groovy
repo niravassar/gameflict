@@ -62,7 +62,7 @@ class GameflictController {
     /*********************************************************************************************/
 
     protected String retrieveUploadFileName() {
-        MultipartFile csvFile = request.getFile("csvFile") // get Excel file from form
+        MultipartFile csvFile = request.getFile("csvFile")
 
         if (csvFile.getOriginalFilename() == "") {
             return ""

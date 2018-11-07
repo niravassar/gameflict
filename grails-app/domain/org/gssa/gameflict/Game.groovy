@@ -14,7 +14,13 @@ class Game {
     AgeGroup ageGroup
     Field field
     League league
+    String coachName1
+    String coachName2
 
+    static constraints = {
+        coachName1 nullable: true
+        coachName2 nullable: true
+    }
     GameBlockTime getGameBlockTime() {
         GameBlockTime gameBlockTime = new GameBlockTime()
         gameBlockTime.game = this
@@ -39,6 +45,6 @@ class Game {
     }
 
     String constructRow() {
-        [gameNumber, date, time, ageGroup, field, league].join(",")
+        [gameNumber, date, time, ageGroup, field, league, coachName1, coachName2].join(",")
     }
 }

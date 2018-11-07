@@ -8,7 +8,7 @@ class GamesExport {
     List<GameConflict> gameConflicts = []
 
     static String constructHeaderRow() {
-        ["#","Date","Start","Age","Field", "League"].join(',')
+        ["#","Date","Start","Age","Field", "League", "Coach Name1", "Coach Name2"].join(',')
     }
 }
 
