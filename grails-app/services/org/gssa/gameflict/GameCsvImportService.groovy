@@ -30,7 +30,7 @@ class GameCsvImportService {
                     coachName1 = csvRow[5]
                 }
                 if (csvRow.length >= 7) {
-                    coachName1 = csvRow[6]
+                    coachName2 = csvRow[6]
                 }
             }
             gameRows << gameRow

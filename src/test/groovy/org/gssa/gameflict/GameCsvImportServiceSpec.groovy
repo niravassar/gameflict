@@ -14,8 +14,8 @@ class GameCsvImportServiceSpec extends HibernateSpec implements ServiceUnitTest<
 
         then:
         gameCsvValues.size() == 6
-        gameCsvValues[0].toString() == "[935, 10/27/2018, 9:00 AM, U8, GSSA Bob Jones #1A]"
-        gameCsvValues[5].toString() == "[971, 11/06/2018, 7:15 PM, U8, GSSA Meadowmere #4C]"
+        gameCsvValues[0].toString() == "[935, 10/27/2018, 9:00 AM, U8, GSSA Bob Jones #1A, Nirav Assar, Kirk Challgren]"
+        gameCsvValues[5].toString() == "[971, 11/06/2018, 7:15 PM, U8, GSSA Meadowmere #4C, Nirav Assar, Joe]"
     }
 
     void "test convert to gamerows"() {
