@@ -25,9 +25,13 @@ class GameflictService {
     GamesExport createGamesExport(Date date = null) {
         List<Game> games = gameService.findAllGamesOrAfterDate(date)
         List<GameConflict> gameConflicts = gameService.calculateGameConflictsAfterDate(date)
+        List<CoachConflict> coachConflicts = gameService.calculateCoachConflictsAfterDate(date)
+
+
         GamesExport gamesExport = new GamesExport()
         gamesExport.games.addAll(games)
         gamesExport.gameConflicts.addAll(gameConflicts)
+        gamesExport.coachConflicts.addAll(coachConflicts)
         gamesExport
     }
 }

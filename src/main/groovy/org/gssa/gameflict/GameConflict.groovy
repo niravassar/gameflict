@@ -9,7 +9,7 @@ class GameConflict {
     Game game2
 
     String getConflictMessage() {
-        "Conflict ${key} Field ${game1.field} Date ${game1.date} Game #${game1.gameNumber} ${game1.time} vs #${game2.gameNumber} ${game2.time}"
+        "Game Conflict ${key} Field ${game1.field} Date ${game1.date} Game #${game1.gameNumber} ${game1.time} vs #${game2.gameNumber} ${game2.time}"
     }
 
     @Override
@@ -18,6 +18,6 @@ class GameConflict {
     }
 
     String constructRow() {
-        ["CONFLICT", "${game1.date}", "${game1.time}", "${game1.ageGroup}", "${game1.field}", getConflictMessage()].join(",")
+        ["GAME CONFLICT", "${game1.date}", "${game1.time}", "${game1.ageGroup}", "${game1.field}", getConflictMessage()].join(",")
     }
 }

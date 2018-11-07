@@ -8,7 +8,7 @@ import java.time.LocalDate
 import java.time.ZoneId
 
 /**
- * End to end tests on the service layer
+ * End to end tests on the service layer with files
  */
 @Integration
 @Rollback
@@ -99,7 +99,7 @@ class GameflictIntSpec extends Specification {
         gamesSorted[1].gameNumber == 573
     }
 
-    void "test no conflicts identified"() {
+    void "test no game conflicts identified"() {
         when:
         String gssaRec = "GSSA Rec Fall 2018"
         String gssaNmcsl = "GSSA NMCSL Fall 2018"
@@ -114,7 +114,7 @@ class GameflictIntSpec extends Specification {
         gameConflicts.size() == 0
     }
 
-    void "test conflicts identified"() {
+    void "test game conflicts identified"() {
         when:
         String gssaRec = "GSSA Rec Fall 2018"
         String gssaNmcsl = "GSSA NMCSL Fall 2018"

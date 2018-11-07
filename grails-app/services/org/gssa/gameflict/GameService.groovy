@@ -52,6 +52,18 @@ class GameService {
         allGameConflicts
     }
 
+    List<CoachConflict> calculateCoachConflictsAfterDate(Date date = null) {
+        Map<String, List<Game>> groups = findAllGamesAndGroupByDate(date)
+        List<CoachConflict> allCoachConflicts = []
+        Set<String> keys = groups.keySet()
+        for ( key in keys ) {
+            List<Game> gamesByDay = groups.get(key)
+            List<CoachConflict> coachConflicts = calculateCoachConflictsForOneDay(key, gamesByDay)
+            allCoachConflicts.addAll(coachConflicts)
+        }
+        allCoachConflicts
+    }
+
     /**************************** protected **************************************************/
 
     protected LocalDate parseDate(String dateAsString) {
@@ -95,6 +107,15 @@ class GameService {
         groups
     }
 
+    protected Map<String, List<Game>> findAllGamesAndGroupByDate(Date date = null) {
+        List<Game> games = findAllGamesOrAfterDate(date)
+        def byLocalDate= { game ->
+            "${game.date}"
+        }
+        def groups = games.groupBy(byLocalDate)
+        groups
+    }
+
     protected List<GameConflict> calculateGameConflictsForOneGroup(String key, List<Game> games) {
         List<GameConflict> gameConflicts = []
         for (x in games) {
@@ -106,5 +127,22 @@ class GameService {
             }
         }
         gameConflicts
+    }
+
+    protected List<CoachConflict> calculateCoachConflictsForOneDay(String key, List<Game> games) {
+        List<CoachConflict> coachConflicts = []
+        for (x in games) {
+            for (y in games) {
+                if (x.gameNumber != y.gameNumber) {
+                    if (x.isCoachInvolved(y)) {
+                        if (x.isGameOverlapping(y)) {
+                            CoachConflict coachConflict = new CoachConflict(key: key, game1: x, game2: y)
+                            coachConflicts << coachConflict
+                        }
+                    }
+                }
+            }
+        }
+        coachConflicts
     }
 }

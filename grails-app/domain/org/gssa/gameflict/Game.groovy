@@ -39,6 +39,22 @@ class Game {
         startOverLap || endOverLap
     }
 
+    boolean isCoachInvolved(Game otherGame) {
+
+        boolean coach1Involved = false
+        boolean coach2Involved = false
+
+        if (otherGame.coachName1) {
+            coach1Involved = otherGame.coachName1.equals(this.coachName1) || otherGame.coachName1.equals(this.coachName2)
+        }
+
+        if (otherGame.coachName2) {
+            coach2Involved = otherGame.coachName2.equals(this.coachName1) || otherGame.coachName2.equals(this.coachName2)
+        }
+
+        coach1Involved || coach2Involved
+    }
+
     @Override
     String toString() {
         gameNumber

@@ -52,6 +52,11 @@ class GameflictController {
             gameExportLines << gameConflictRow
         }
 
+        for (c in gamesExport.coachConflicts) {
+            String coachConflictRow = c.constructRow()
+            gameExportLines << coachConflictRow
+        }
+
         LocalDate localDate = LocalDate.now()
         ServletOutputStream outs = prepareCsvResponse(response, "gamesExport-${localDate}", gameExportLines)
 

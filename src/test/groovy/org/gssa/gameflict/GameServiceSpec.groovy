@@ -175,4 +175,52 @@ class GameServiceSpec extends HibernateSpec implements ServiceUnitTest<GameServi
         !result2
     }
 
+    void "test is coach involved in game - false "() {
+        when:
+        League gssaRec = League.findByName("GSSA Rec Fall 2018")
+        Field mm1 = Field.findByName("MM1")
+        Game game1 = service.createOrUpdate(409, oct31, nineAm, AgeGroup.U9, mm1, gssaRec, coachName1, coachName2)
+        Game game2 = service.createOrUpdate(410, oct31, tenAm.plusHours(1), AgeGroup.U9, mm1, gssaRec, "Bob", "Ted")
+        boolean result1 = game1.isCoachInvolved(game2)
+        boolean result2 = game2.isCoachInvolved(game1)
+        List<Game> gameList = Game.list()
+
+        then:
+        gameList.size() == 2
+        !result1
+        !result2
+    }
+
+    void "test is coach involved in game - true coach1"() {
+        when:
+        League gssaRec = League.findByName("GSSA Rec Fall 2018")
+        Field mm1 = Field.findByName("MM1")
+        Game game1 = service.createOrUpdate(409, oct31, nineAm, AgeGroup.U9, mm1, gssaRec, coachName1, coachName2)
+        Game game2 = service.createOrUpdate(410, oct31, tenAm.plusHours(1), AgeGroup.U9, mm1, gssaRec, coachName1, "Ted")
+        boolean result1 = game1.isCoachInvolved(game2)
+        boolean result2 = game2.isCoachInvolved(game1)
+        List<Game> gameList = Game.list()
+
+        then:
+        gameList.size() == 2
+        result1
+        result2
+    }
+
+    void "test is coach involved in game - true coach2"() {
+        when:
+        League gssaRec = League.findByName("GSSA Rec Fall 2018")
+        Field mm1 = Field.findByName("MM1")
+        Game game1 = service.createOrUpdate(409, oct31, nineAm, AgeGroup.U9, mm1, gssaRec, coachName1, coachName2)
+        Game game2 = service.createOrUpdate(410, oct31, tenAm.plusHours(1), AgeGroup.U9, mm1, gssaRec, "Bob", coachName2)
+        boolean result1 = game1.isCoachInvolved(game2)
+        boolean result2 = game2.isCoachInvolved(game1)
+        List<Game> gameList = Game.list()
+
+        then:
+        gameList.size() == 2
+        result1
+        result2
+    }
+
 }
