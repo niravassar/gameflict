@@ -12,7 +12,7 @@ How to Install
 
 1. You must have JRE 1.8 installed on your computer. If you are not sure, just skip this step and chances are its already installed.
 Most computers have it out of the box. If you have problems come back here: https://www.java.com/en/download/help/download_options.xml
-2. Find the file gameflict.zip on google drive.
+2. Find the file gameflict.zip on google drive. Click this tiny url below to see where it will take you
 
 https://preview.tinyurl.com/y7tuchbh
 
