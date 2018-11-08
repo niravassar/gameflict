@@ -17,7 +17,7 @@ Most computers have it out of the box. If you have problems come back here: http
 https://preview.tinyurl.com/y7tuchbh
 
 Create a new directory in your Documents folder called: "gameflict".
-Download the zip from google drive and then save it to the new directory you just created.  Unzip the file. It will create a folder
+Download the zip from google drive. If you already have it, then save it to the new directory you just created.  Unzip the file. It will create a folder
 with files in it, along with some other: deleteDb.bat, startGameflict.bat, and gameflict-1.0.jar. The .jar file is the application,
 and the .bat files are the execution files.
 3. Click on the startGameflict.bat file. This will start the app in a black window. It will take a minute or two to start
