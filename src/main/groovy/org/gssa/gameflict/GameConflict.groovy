@@ -9,7 +9,7 @@ class GameConflict {
     Game game2
 
     String getConflictMessage() {
-        "Game Conflict ${key} Field ${game1.field} Date ${game1.date} Game #${game1.gameNumber} ${game1.league} ${game1.time} vs #${game2.gameNumber} ${game2.league} ${game2.time}"
+        "#${game1.gameNumber} ${game1.league} / #${game2.gameNumber} ${game2.league}"
     }
 
     @Override

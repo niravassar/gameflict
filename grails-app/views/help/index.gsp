@@ -36,8 +36,8 @@
             <p>File Formatting</p>
         </div>
         <div class="w3-panel w3-leftbar w3-border-red">
-            <p>The time column must be formatted such as: 9:00 AM.</p>
-            <p>The time column must be formatted such as: 10/28/2018 or it can be formatted as: 9/8/18</p>
+            <p>The time column must be formatted such as: <font color="red">9:00 AM.</font></p>
+            <p>The time column must be formatted such as: <font color="red">10/28/2018</font> or it can be formatted as: <font color="blue">9/8/18</font></p>
             <p>Use excel formatting tools to format the time in the excel file.</p>
             <br/>
             <p>The excel file must have its columns ordered in this order:</p>
@@ -52,7 +52,7 @@
         </div>
         <div class="w3-panel w3-leftbar w3-border-red">
             <p>For Technical assistance with this app, please contact: </p>
-            <p>Assar Java Consulting: Nirav Assar, nirav_p_assar@yahoo.com, 512-695-3465</p>
+            <p>Assar Java Consulting: Nirav Assar, <a href="mailto:nirav_p_assar@yahoo.com">nirav_p_assar@yahoo.com</a>, 512-695-3465</p>
         </div>
     </div>
 </body>

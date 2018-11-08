@@ -83,6 +83,6 @@ assets {
 task packageZip(type: Zip, dependsOn: 'assemble') {
     archiveName = "gameflict.zip"
     destinationDir = file("${buildDir}/dist")
-    from "${buildDir}/libs", "bat"
-    include "*.jar", "*.bat"
+    from "${buildDir}/libs", "bat", "src/integration-test/resources", "."
+    include "gameflict-1.0.jar", "deleteDb.bat", "startGameflict.bat", "demo_game_with_conflict.csv", "README.txt"
 }

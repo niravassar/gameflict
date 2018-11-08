@@ -9,7 +9,8 @@ class CoachConflict {
     Game game2
 
     String getConflictMessage() {
-        "Coach Conflict ${key} Game #${game1.gameNumber} has ${game1.coachName1} and ${game1.coachName2} while #${game2.gameNumber} has ${game2.coachName1} and ${game2.coachName2}"
+        "#${game1.gameNumber} ${game1.league} has ${game1.coachName1} and ${game1.coachName2} / #${game2.gameNumber} ${game2.league} " +
+                "has ${game2.coachName1} and ${game2.coachName2}"
     }
 
     @Override
