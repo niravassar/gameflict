@@ -45,11 +45,14 @@ class FieldCreator {
 
     static String leaguesString = '''
         [
-            {"name": "GSSA Rec Fall 2018"},
-            {"name": "GSSA NMCSL Fall 2018"},
-            {"name": "GSSA Adult Fall 2018"},
-            {"name": "U90C Fall 2018"},                     
-            {"name": "GMSL Fall 2018"}                    
+            {"name": "GSSA Rec"},
+            {"name": "GSSA NMCSL"},
+            {"name": "GSSA Adult"},
+            {"name": "U90C"},                     
+            {"name": "GMSL"},                    
+            {"name": "ULTIMATE FRISBEE"},                    
+            {"name": "GRAPEVINE CITY EVENT"},                    
+            {"name": "CLOSURE"}                    
         ]'''
 
     void createFields() {
