@@ -17,7 +17,7 @@ enum AgeGroup {
     U16(120),
     U17(120),
     U18(120),
-    ADULT3HR(180),
+    ADULT4HR(240),
     ADULT6HR(360)
 
     Long durationMinutes
