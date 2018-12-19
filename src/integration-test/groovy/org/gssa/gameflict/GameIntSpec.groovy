@@ -18,17 +18,17 @@ class GameIntSpec extends Specification {
 
     def setup() {
         gameService.gameEntry(200, "10/28/2018","9:00 AM","U9",
-                "GSSA Meadowmere #2A","GSSA Rec Fall 2018", "Nirav Assar", "Kirk Challgren")
+                "GSSA Meadowmere #2A","GSSA Rec", "Nirav Assar", "Kirk Challgren")
         gameService.gameEntry(201, "10/28/2018","10:00 AM","U9",
-                "GSSA Meadowmere #2A","GSSA Rec Fall 2018", "Bob", "Nirav Assar")
+                "GSSA Meadowmere #2A","GSSA Rec", "Bob", "Nirav Assar")
         gameService.gameEntry(202, "10/31/2018","10:15 AM","U10",
-                "GSSA Oak Grove Park #5A","GSSA Rec Fall 2018", "Jon", "Rob")
+                "GSSA Oak Grove Park #5A","GSSA Rec", "Jon", "Rob")
         gameService.gameEntry(203, "11/15/2018","5:15 PM","U13",
-                "Oakgrove #1","GSSA Rec Fall 2018", "Nirav Assar", "Kirk Challgren")
+                "Oakgrove #1","GSSA Rec", "Nirav Assar", "Kirk Challgren")
         gameService.gameEntry(204, "11/15/2018","10:00 AM","U9",
-                "GSSA Meadowmere #2A","GSSA Rec Fall 2018", "Nirav Assar", "Kirk Challgren")
+                "GSSA Meadowmere #2A","GSSA Rec", "Nirav Assar", "Kirk Challgren")
         gameService.gameEntry(205, "11/15/2018","12:00 PM","U10",
-                "GSSA Meadowmere #2A","GSSA Rec Fall 2018", "Mark", "Steve")
+                "GSSA Meadowmere #2A","GSSA Rec", "Mark", "Steve")
 
     }
 
@@ -105,7 +105,7 @@ class GameIntSpec extends Specification {
         coachConflicts.size() == 2
         coachConflicts[0].key == "2018-10-28"
         coachConflicts[0].game1.gameNumber == 200
-        coachConflicts[0].getConflictMessage() == "Coach Conflict 2018-10-28 Game #200 has Nirav Assar and Kirk Challgren while #201 has Bob and Nirav Assar"
+        coachConflicts[0].getConflictMessage() == "#200 GSSA Rec has Nirav Assar and Kirk Challgren / #201 GSSA Rec has Bob and Nirav Assar"
     }
 
     void "test game conflicts for one group - no conflicts"() {
@@ -148,6 +148,6 @@ class GameIntSpec extends Specification {
         coachConflicts.size() == 2
         coachConflicts[1].key == "2018-10-28"
         coachConflicts[1].game1.gameNumber == 201
-        coachConflicts[1].getConflictMessage() == "Coach Conflict 2018-10-28 Game #201 has Bob and Nirav Assar while #200 has Nirav Assar and Kirk Challgren"
+        coachConflicts[1].getConflictMessage() == "#201 GSSA Rec has Bob and Nirav Assar / #200 GSSA Rec has Nirav Assar and Kirk Challgren"
     }
 }

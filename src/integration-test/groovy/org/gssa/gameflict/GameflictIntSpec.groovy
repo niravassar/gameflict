@@ -27,8 +27,8 @@ class GameflictIntSpec extends Specification {
 
     void "test import and save csv files - formatted dates from xls"() {
         when:
-        String gssaRec = "GSSA Rec Fall 2018"
-        String gssaNmcsl = "GSSA NMCSL Fall 2018"
+        String gssaRec = "GSSA Rec"
+        String gssaNmcsl = "GSSA NMCSL"
         File gameCsv1 = new File("$SAMPLE_XLS_PATH/GSSARECF186_sample.csv")
         File gameCsv2 = new File("$SAMPLE_XLS_PATH/GSSANMCSL7_sample.csv")
         gameflictService.importAndSaveGames(gameCsv1.path, gssaRec)
@@ -41,8 +41,8 @@ class GameflictIntSpec extends Specification {
 
     void "test import and save csv files - just column adjustment and save"() {
         when:
-        String gssaRec = "GSSA Rec Fall 2018"
-        String gssaNmcsl = "GSSA NMCSL Fall 2018"
+        String gssaRec = "GSSA Rec"
+        String gssaNmcsl = "GSSA NMCSL"
         File gameCsv1 = new File("$SAMPLE_XLS_PATH/GSSARECF186_sample_no_formatting.csv")
         File gameCsv2 = new File("$SAMPLE_XLS_PATH/GSSANMCSL7_sample_no_formatting.csv")
         gameflictService.importAndSaveGames(gameCsv1.path, gssaRec)
@@ -55,7 +55,7 @@ class GameflictIntSpec extends Specification {
 
     void "test one game is updated"() {
         when:
-        String gssaRec = "GSSA Rec Fall 2018"
+        String gssaRec = "GSSA Rec"
         File gameCsv1 = new File("$SAMPLE_XLS_PATH/GSSARECF186_sample.csv")
         gameflictService.importAndSaveGames(gameCsv1.path, gssaRec)
         List<Game> games = Game.list()
@@ -81,8 +81,8 @@ class GameflictIntSpec extends Specification {
 
     void "test query by date"() {
         when:
-        String gssaRec = "GSSA Rec Fall 2018"
-        String gssaNmcsl = "GSSA NMCSL Fall 2018"
+        String gssaRec = "GSSA Rec"
+        String gssaNmcsl = "GSSA NMCSL"
         File gameCsv1 = new File("$SAMPLE_XLS_PATH/GSSARECF186_sample.csv")
         File gameCsv2 = new File("$SAMPLE_XLS_PATH/GSSANMCSL7_sample.csv")
         gameflictService.importAndSaveGames(gameCsv1.path, gssaRec)
@@ -101,8 +101,8 @@ class GameflictIntSpec extends Specification {
 
     void "test no game conflicts identified"() {
         when:
-        String gssaRec = "GSSA Rec Fall 2018"
-        String gssaNmcsl = "GSSA NMCSL Fall 2018"
+        String gssaRec = "GSSA Rec"
+        String gssaNmcsl = "GSSA NMCSL"
         File gameCsv1 = new File("$SAMPLE_XLS_PATH/GSSARECF186_sample.csv")
         File gameCsv2 = new File("$SAMPLE_XLS_PATH/GSSANMCSL7_sample.csv")
         gameflictService.importAndSaveGames(gameCsv1.path, gssaRec)
@@ -116,8 +116,8 @@ class GameflictIntSpec extends Specification {
 
     void "test game conflicts identified"() {
         when:
-        String gssaRec = "GSSA Rec Fall 2018"
-        String gssaNmcsl = "GSSA NMCSL Fall 2018"
+        String gssaRec = "GSSA Rec"
+        String gssaNmcsl = "GSSA NMCSL"
         File gameCsv1 = new File("$SAMPLE_XLS_PATH/GSSARECF186_sample_with_conflict.csv")
         File gameCsv2 = new File("$SAMPLE_XLS_PATH/GSSANMCSL7_sample.csv")
         gameflictService.importAndSaveGames(gameCsv1.path, gssaRec)
@@ -133,8 +133,8 @@ class GameflictIntSpec extends Specification {
 
     void "test no coach conflicts identified"() {
         when:
-        String gssaRec = "GSSA Rec Fall 2018"
-        String gssaNmcsl = "GSSA NMCSL Fall 2018"
+        String gssaRec = "GSSA Rec"
+        String gssaNmcsl = "GSSA NMCSL"
         File gameCsv1 = new File("$SAMPLE_XLS_PATH/GSSARECF186_sample.csv")
         File gameCsv2 = new File("$SAMPLE_XLS_PATH/GSSANMCSL7_sample.csv")
         gameflictService.importAndSaveGames(gameCsv1.path, gssaRec)
@@ -148,8 +148,8 @@ class GameflictIntSpec extends Specification {
 
     void "test coach conflicts identified"() {
         when:
-        String gssaRec = "GSSA Rec Fall 2018"
-        String gssaNmcsl = "GSSA NMCSL Fall 2018"
+        String gssaRec = "GSSA Rec"
+        String gssaNmcsl = "GSSA NMCSL"
         File gameCsv1 = new File("$SAMPLE_XLS_PATH/GSSARECF186_sample_with_conflict.csv")
         File gameCsv2 = new File("$SAMPLE_XLS_PATH/GSSANMCSL7_sample.csv")
         gameflictService.importAndSaveGames(gameCsv1.path, gssaRec)
@@ -161,13 +161,13 @@ class GameflictIntSpec extends Specification {
         coachConflicts.size() == 2
         coachConflicts[0].key == "2018-10-28"
         coachConflicts[0].game1.gameNumber == 515
-        coachConflicts[0].conflictMessage == "Coach Conflict 2018-10-28 Game #515 has Steve and Mark while #1194 has Steve and Nirav"
+        coachConflicts[0].conflictMessage == "#515 GSSA Rec has Steve and Mark / #1194 GSSA NMCSL has Steve and Nirav"
     }
 
     void "test all game export with conflicts"() {
         when:
-        String gssaRec = "GSSA Rec Fall 2018"
-        String gssaNmcsl = "GSSA NMCSL Fall 2018"
+        String gssaRec = "GSSA Rec"
+        String gssaNmcsl = "GSSA NMCSL"
         File gameCsv1 = new File("$SAMPLE_XLS_PATH/GSSARECF186_sample_with_conflict.csv")
         File gameCsv2 = new File("$SAMPLE_XLS_PATH/GSSANMCSL7_sample.csv")
         gameflictService.importAndSaveGames(gameCsv1.path, gssaRec)
