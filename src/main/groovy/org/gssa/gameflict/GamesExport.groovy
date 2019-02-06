@@ -9,7 +9,7 @@ class GamesExport {
     List<CoachConflict> coachConflicts = []
 
     static String constructHeaderRow() {
-        ["#","Date","Start","Age","Field", "League", "Coach Name1", "Coach Name2"].join(',')
+        ["#","Date","Start","Age","Field", "League", "Home Coach", "Away Coach"].join(',')
     }
 }
 

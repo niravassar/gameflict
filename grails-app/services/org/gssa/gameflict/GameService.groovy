@@ -19,14 +19,14 @@ class GameService {
     FieldService fieldService
 
     Game gameEntry(Integer gameNumber, String dateAsString, String timeAsString, String ageGroupAsString, String fieldName,
-                   String leagueName, String coachName1, String coachName2) {
+                   String leagueName, String homeCoach, String visitorCoach) {
         LocalDate date = parseDate(dateAsString)
         LocalTime time = parseTime(timeAsString)
         AgeGroup ageGroup = matchAgeGroup(ageGroupAsString)
         Field field = fieldService.findFieldByName(fieldName)
         League league = League.findByName(leagueName)
 
-        return createOrUpdate(gameNumber, date, time, ageGroup, field, league, coachName1, coachName2)
+        return createOrUpdate(gameNumber, date, time, ageGroup, field, league, homeCoach, visitorCoach)
     }
 
     List<Game> findAllGamesOrAfterDate(Date date = null) {
@@ -84,7 +84,7 @@ class GameService {
     }
 
     protected Game createOrUpdate(Integer gameNumber, LocalDate date, LocalTime time, AgeGroup ageGroup,
-                        Field field, League league, String coachName1, String coachName2) {
+                        Field field, League league, String homeCoach, String visitorCoach) {
         Game game = Game.findOrCreateByGameNumberAndLeague(gameNumber, league)
         game.gameNumber = gameNumber
         game.date = date
@@ -92,8 +92,8 @@ class GameService {
         game.ageGroup = ageGroup
         game.field = field
         game.league = league
-        game.coachName1 = coachName1
-        game.coachName2 = coachName2
+        game.homeCoach = homeCoach
+        game.visitorCoach = visitorCoach
         game.save()
         game
     }

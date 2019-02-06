@@ -15,5 +15,5 @@ When uploading a csv file, the app will make a copy of the file for you.
 
 ## Development
 
-1. `grail run-app` for development mode.
-2. `test-app` runs the full suite of server side tests.
+1. `grails run-app` for development mode.
+2. `grails test-app` runs the full suite of server side tests.

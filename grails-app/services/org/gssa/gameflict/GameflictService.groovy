@@ -17,7 +17,7 @@ class GameflictService {
         List<Game> games = []
         for (gameRow in gameRows) {
             games << gameService.gameEntry(gameRow.gameNumber,gameRow.dateAsString,gameRow.timeAsString,gameRow.ageGroupAsString,
-                                    gameRow.fieldName, leagueName, gameRow.coachName1, gameRow.coachName2)
+                                    gameRow.fieldName, leagueName, gameRow.homeCoach, gameRow.visitorCoach)
         }
         games.size()
     }

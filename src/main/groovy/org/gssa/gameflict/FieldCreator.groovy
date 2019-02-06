@@ -50,8 +50,10 @@ class FieldCreator {
             {"name": "GSSA Adult"},
             {"name": "U90C"},                     
             {"name": "GMSL"},                    
+            {"name": "SOLAR DA"},                    
             {"name": "ULTIMATE FRISBEE"},                    
             {"name": "GRAPEVINE CITY EVENT"},                    
+            {"name": "GCISD Lacrosse"},                    
             {"name": "CLOSURE"}                    
         ]'''
 

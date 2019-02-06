@@ -14,12 +14,12 @@ class Game {
     AgeGroup ageGroup
     Field field
     League league
-    String coachName1
-    String coachName2
+    String homeCoach
+    String visitorCoach
 
     static constraints = {
-        coachName1 nullable: true
-        coachName2 nullable: true
+        homeCoach nullable: true
+        visitorCoach nullable: true
     }
     GameBlockTime getGameBlockTime() {
         GameBlockTime gameBlockTime = new GameBlockTime()
@@ -41,18 +41,18 @@ class Game {
 
     boolean isCoachInvolved(Game otherGame) {
 
-        boolean coach1Involved = false
-        boolean coach2Involved = false
+        boolean homeCoachInvolved = false
+        boolean visitorCoachInvolved = false
 
-        if (otherGame.coachName1) {
-            coach1Involved = otherGame.coachName1.equals(this.coachName1) || otherGame.coachName1.equals(this.coachName2)
+        if (otherGame.homeCoach) {
+            homeCoachInvolved = otherGame.homeCoach.equals(this.homeCoach) || otherGame.homeCoach.equals(this.visitorCoach)
         }
 
-        if (otherGame.coachName2) {
-            coach2Involved = otherGame.coachName2.equals(this.coachName1) || otherGame.coachName2.equals(this.coachName2)
+        if (otherGame.visitorCoach) {
+            visitorCoachInvolved = otherGame.visitorCoach.equals(this.homeCoach) || otherGame.visitorCoach.equals(this.visitorCoach)
         }
 
-        coach1Involved || coach2Involved
+        homeCoachInvolved || visitorCoachInvolved
     }
 
     @Override
@@ -61,6 +61,6 @@ class Game {
     }
 
     String constructRow() {
-        [gameNumber, date, time, ageGroup, field, league, coachName1, coachName2].join(",")
+        [gameNumber, date, time, ageGroup, field, league, homeCoach, visitorCoach].join(",")
     }
 }

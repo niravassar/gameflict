@@ -27,10 +27,10 @@ class GameCsvImportService {
                 ageGroupAsString = csvRow[3]
                 fieldName = csvRow[4]
                 if (csvRow.length >= 6) {
-                    coachName1 = csvRow[5]
+                    homeCoach = csvRow[5]
                 }
                 if (csvRow.length >= 7) {
-                    coachName2 = csvRow[6]
+                    visitorCoach = csvRow[6]
                 }
             }
             gameRows << gameRow
