@@ -4,10 +4,10 @@ import com.opencsv.CSVReader
 import grails.gorm.transactions.Transactional
 
 /**
- * Parses the csv files with games
+ * Parses the csv files for all items
  */
 @Transactional
-class GameCsvImportService {
+class GameflictCsvImportService {
 
     List<String[]> parseCsv(String fileName) {
         CSVReader reader = new CSVReader(new FileReader(fileName))
@@ -36,5 +36,21 @@ class GameCsvImportService {
             gameRows << gameRow
         }
         gameRows
+    }
+
+    List<TeamRow> convertIntoTeamRows(List<String[]> teamCsvValues) {
+        List<TeamRow> teamRows = []
+        for (csvRow in teamCsvValues) {
+            TeamRow teamRow = new TeamRow()
+            teamRow.with {
+                ageGroupAsString = csvRow[0]
+                teamName = csvRow[1]
+                if (csvRow.length >= 2) {
+                    coachName = csvRow[2]
+                }
+            }
+            teamRows << teamRow
+        }
+        teamRows
     }
 }

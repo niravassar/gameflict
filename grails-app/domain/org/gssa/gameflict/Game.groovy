@@ -14,12 +14,16 @@ class Game {
     AgeGroup ageGroup
     Field field
     League league
+    Team homeTeam
+    Team visitorTeam
     String homeCoach
     String visitorCoach
 
     static constraints = {
         homeCoach nullable: true
         visitorCoach nullable: true
+        homeTeam nullable: true
+        visitorTeam nullable: true
     }
     GameBlockTime getGameBlockTime() {
         GameBlockTime gameBlockTime = new GameBlockTime()
