@@ -26,7 +26,7 @@
                 </fieldset>
                 <fieldset>
                     <div class="form-group">
-                        <input type="file" name="csvFile"  class="form-control" style="width: 25%;" />
+                        <input type="file" name="gameCsvFile"  class="form-control" style="width: 25%;" />
                     </div>
                 </fieldset>
                 <fieldset>

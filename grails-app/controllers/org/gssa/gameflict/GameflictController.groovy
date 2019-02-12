@@ -67,16 +67,16 @@ class GameflictController {
     /*********************************************************************************************/
 
     protected String retrieveUploadFileName() {
-        MultipartFile csvFile = request.getFile("csvFile")
+        MultipartFile gameCsvFile = request.getFile("gameCsvFile")
 
-        if (csvFile.getOriginalFilename() == "") {
+        if (gameCsvFile.getOriginalFilename() == "") {
             return ""
         }
 
         // write the file to local file
-        File newFile = new File("${csvFile.getOriginalFilename()}.copy")
+        File newFile = new File("${gameCsvFile.getOriginalFilename()}.copy")
         FileOutputStream outputStream = new FileOutputStream(newFile)
-        byte[] bytes = csvFile.getBytes()
+        byte[] bytes = gameCsvFile.getBytes()
         outputStream.write(bytes)
         outputStream.close()
 

@@ -36,6 +36,7 @@
                 <ul>
                     <li><a href="<g:createLink controller="gameflict"/>">Start</a></li>
                     <li><a href="<g:createLink controller="game"/>">Games</a></li>
+                    <li><a href="<g:createLink controller="team"/>">Teams</a></li>
                     <li><a href="<g:createLink controller="field"/>">Fields</a></li>
                     <li><a href="<g:createLink controller="fieldNickName"/>">FieldNickNames</a></li>
                     <li><a href="<g:createLink controller="league"/>">Leagues</a></li>
