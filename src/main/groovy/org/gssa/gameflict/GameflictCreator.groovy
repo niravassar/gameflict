@@ -3,9 +3,9 @@ package org.gssa.gameflict
 import groovy.json.JsonSlurper
 
 /**
- * Creates the default fields for GSSA
+ * Creates the default fields for GSSA, and other data
  */
-class FieldCreator {
+class GameflictCreator {
 
     JsonSlurper jsonSlurper = new JsonSlurper()
 
@@ -57,6 +57,27 @@ class FieldCreator {
             {"name": "CLOSURE"}                    
         ]'''
 
+    static String ageGroupString = '''
+        [
+            {"name": "U4", "durationMinutes": "60"},                  
+            {"name": "U5", "durationMinutes": "60"},                  
+            {"name": "U6", "durationMinutes": "60"},                  
+            {"name": "U7", "durationMinutes": "60"},                  
+            {"name": "U8", "durationMinutes": "60"},                  
+            {"name": "U9", "durationMinutes": "75"},                  
+            {"name": "U10", "durationMinutes": "75"},                  
+            {"name": "U11", "durationMinutes": "90"},                  
+            {"name": "U12", "durationMinutes": "90"},                  
+            {"name": "U13", "durationMinutes": "90"},                  
+            {"name": "U14", "durationMinutes": "90"},                  
+            {"name": "U15", "durationMinutes": "90"},                  
+            {"name": "U16", "durationMinutes": "90"},                  
+            {"name": "U17", "durationMinutes": "90"},                  
+            {"name": "U18", "durationMinutes": "90"},                  
+            {"name": "ADULT4HR", "durationMinutes": "240"},                  
+            {"name": "ADULT8HR", "durationMinutes": "480"}              
+        ]'''
+
     void createFields() {
         List<Map> fieldsMap = jsonSlurper.parseText(fieldsString)
 
@@ -73,6 +94,14 @@ class FieldCreator {
 
         for(l in leaguesMap) {
             new League(name: l.name, season: l.season).save()
+        }
+    }
+
+    void createAgeGroups() {
+        List<Map> ageGroupsMap = jsonSlurper.parseText(ageGroupString)
+
+        for(a in ageGroupsMap) {
+            AgeGroup ageGroup = new AgeGroup(name: a.name, durationMinutes: a.durationMinutes as Long).save()
         }
     }
 }

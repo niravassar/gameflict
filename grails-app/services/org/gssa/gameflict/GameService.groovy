@@ -89,7 +89,7 @@ class GameService {
     }
 
     protected AgeGroup matchAgeGroup(String ageGroupAsString) {
-        AgeGroup ageGroup = ageGroupAsString as AgeGroup
+        AgeGroup ageGroup = AgeGroup.findByName(ageGroupAsString)
         ageGroup
     }
 

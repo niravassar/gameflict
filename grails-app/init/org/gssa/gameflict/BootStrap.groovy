@@ -2,13 +2,14 @@ package org.gssa.gameflict
 
 class BootStrap {
 
-    FieldCreator fieldCreator = new FieldCreator()
+    GameflictCreator gameflictCreator = new GameflictCreator()
 
     def init = { servletContext ->
 
         if (Field.count() < 1) {
-            fieldCreator.createFields()
-            fieldCreator.createLeagues()
+            gameflictCreator.createFields()
+            gameflictCreator.createLeagues()
+            gameflictCreator.createAgeGroups()
         }
 
 

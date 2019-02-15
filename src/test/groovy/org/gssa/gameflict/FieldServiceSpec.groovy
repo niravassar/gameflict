@@ -5,12 +5,12 @@ import grails.testing.services.ServiceUnitTest
 
 class FieldServiceSpec extends HibernateSpec implements ServiceUnitTest<FieldService>{
 
-    FieldCreator fieldCreator = new FieldCreator()
+    GameflictCreator gameflictCreator = new GameflictCreator()
 
     List<Class> getDomainClasses() { [Field, FieldNickName]}
 
     def setup() {
-        fieldCreator.createFields()
+        gameflictCreator.createFields()
     }
 
     void "test find field by nickname"() {
