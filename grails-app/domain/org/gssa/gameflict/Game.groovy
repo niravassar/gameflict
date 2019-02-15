@@ -20,10 +20,16 @@ class Game {
     String visitorCoach
 
     static constraints = {
-        homeCoach nullable: true
-        visitorCoach nullable: true
+        gameNumber()
+        date()
+        time()
+        ageGroup()
+        field()
+        league()
         homeTeam nullable: true
         visitorTeam nullable: true
+        homeCoach nullable: true
+        visitorCoach nullable: true
     }
     GameBlockTime getGameBlockTime() {
         GameBlockTime gameBlockTime = new GameBlockTime()
