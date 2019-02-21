@@ -21,7 +21,7 @@ class GameflictController {
     def index() { }
 
     def uploadGameCsv(){
-        String fileName = retrieveUploadFileName()
+        String fileName = retrieveUploadFileName("gameCsvFile")
         String leagueName = retrieveLeagueName()
 
         if (fileName.isEmpty() || leagueName.isEmpty()) {
@@ -34,6 +34,16 @@ class GameflictController {
             }
             return render(view:'index', model: [messageType: "success"])
         }
+    }
+
+    def uploadTeamCsv(){
+        String fileName = retrieveUploadFileName("teamCsvFile")
+        if (fileName.isEmpty()) {
+            flash.message = 'The uploaded team file is empty!'
+            return render(view:'index', model: [messageType: "fail"])
+        }
+
+      println "this code reached here"
     }
 
     def createGamesExport() {
@@ -66,22 +76,22 @@ class GameflictController {
 
     /*********************************************************************************************/
 
-    protected String retrieveUploadFileName() {
-        MultipartFile gameCsvFile = request.getFile("gameCsvFile")
+    protected String retrieveUploadFileName(String fileName) {
+        MultipartFile csvFile = request.getFile(fileName)
 
-        if (gameCsvFile.getOriginalFilename() == "") {
+        if (csvFile.getOriginalFilename() == "") {
             return ""
         }
 
         // write the file to local file
-        File newFile = new File("${gameCsvFile.getOriginalFilename()}.copy")
+        File newFile = new File("${csvFile.getOriginalFilename()}.copy")
         FileOutputStream outputStream = new FileOutputStream(newFile)
-        byte[] bytes = gameCsvFile.getBytes()
+        byte[] bytes = csvFile.getBytes()
         outputStream.write(bytes)
         outputStream.close()
 
-        String fileName = newFile.getAbsolutePath()
-        fileName
+        String fileNamePath = newFile.getAbsolutePath()
+        fileNamePath
     }
 
     protected retrieveLeagueName() {
