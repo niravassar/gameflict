@@ -126,9 +126,9 @@ class GameflictIntSpec extends Specification {
 
 
         then:
-        gameConflicts.size() == 2
+        gameConflicts.size() == 1
         gameConflicts[0].key == "MM2A-2018-10-28"
-        gameConflicts[0].game1.gameNumber == 515
+        gameConflicts[0].game1.gameNumber == 1194
     }
 
     void "test no coach conflicts identified"() {
@@ -158,10 +158,10 @@ class GameflictIntSpec extends Specification {
 
 
         then:
-        coachConflicts.size() == 2
+        coachConflicts.size() == 1
         coachConflicts[0].key == "2018-10-28"
-        coachConflicts[0].game1.gameNumber == 515
-        coachConflicts[0].conflictMessage == "#515 GSSA Rec has Steve and Mark / #1194 GSSA NMCSL has Steve and Nirav"
+        coachConflicts[0].game1.gameNumber == 1194
+        coachConflicts[0].conflictMessage == "#1194 GSSA NMCSL has Steve and Nirav / #515 GSSA Rec has Steve and Mark"
     }
 
     void "test all game export with conflicts"() {
@@ -177,7 +177,7 @@ class GameflictIntSpec extends Specification {
 
         then:
         gamesExport.games.size() == 12
-        gamesExport.gameConflicts.size() == 2
-        gamesExport.coachConflicts.size() == 2
+        gamesExport.gameConflicts.size() == 1
+        gamesExport.coachConflicts.size() == 1
     }
 }

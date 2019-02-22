@@ -89,7 +89,7 @@ class GameIntSpec extends Specification {
         List<GameConflict> gameConflicts = gameService.calculateGameConflictsForOneGroup(keys[0], mm2GamesOct28)
 
         then:
-        gameConflicts.size() == 2
+        gameConflicts.size() == 1
         gameConflicts[0].key == "MM2A-2018-10-28"
         gameConflicts[0].game1.gameNumber == 200
     }
@@ -102,7 +102,7 @@ class GameIntSpec extends Specification {
         List<CoachConflict> coachConflicts = gameService.calculateCoachConflictsForOneDay(keys[0], oct28Games)
 
         then:
-        coachConflicts.size() == 2
+        coachConflicts.size() == 1
         coachConflicts[0].key == "2018-10-28"
         coachConflicts[0].game1.gameNumber == 200
         coachConflicts[0].getConflictMessage() == "#200 GSSA Rec has Nirav Assar and Kirk Challgren / #201 GSSA Rec has Bob and Nirav Assar"
@@ -135,9 +135,9 @@ class GameIntSpec extends Specification {
         List<GameConflict> gameConflicts = gameService.calculateGameConflictsAfterDate()
 
         then:
-        gameConflicts.size() == 2
-        gameConflicts[1].key == "MM2A-2018-10-28"
-        gameConflicts[1].game1.gameNumber == 201
+        gameConflicts.size() == 1
+        gameConflicts[0].key == "MM2A-2018-10-28"
+        gameConflicts[0].game1.gameNumber == 200
     }
 
     void "test coach conflicts for all groups"() {
@@ -145,9 +145,9 @@ class GameIntSpec extends Specification {
         List<CoachConflict> coachConflicts = gameService.calculateCoachConflictsAfterDate()
 
         then:
-        coachConflicts.size() == 2
-        coachConflicts[1].key == "2018-10-28"
-        coachConflicts[1].game1.gameNumber == 201
-        coachConflicts[1].getConflictMessage() == "#201 GSSA Rec has Bob and Nirav Assar / #200 GSSA Rec has Nirav Assar and Kirk Challgren"
+        coachConflicts.size() == 1
+        coachConflicts[0].key == "2018-10-28"
+        coachConflicts[0].game1.gameNumber == 200
+        coachConflicts[0].getConflictMessage() == "#200 GSSA Rec has Nirav Assar and Kirk Challgren / #201 GSSA Rec has Bob and Nirav Assar"
     }
 }

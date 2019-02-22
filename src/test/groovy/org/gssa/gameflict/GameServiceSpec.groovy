@@ -195,6 +195,22 @@ class GameServiceSpec extends HibernateSpec implements ServiceUnitTest<GameServi
         then:
         gameList.size() == 2
         result1
+    }
+
+    void "test game overlapping true - same time"() {
+        when:
+        League gssaRec = League.findByName("GSSA Rec")
+        Field mm1 = Field.findByName("MM1")
+        AgeGroup U9 = AgeGroup.findByName("U9")
+        Game game1 = service.createOrUpdateGame(409, oct31, nineAm, U9, mm1, gssaRec, homeCoach, visitorCoach)
+        Game game2 = service.createOrUpdateGame(410, oct31, nineAm, U9, mm1, gssaRec, homeCoach, visitorCoach)
+        boolean result1 = game1.isGameOverlapping(game2)
+        boolean result2 = game2.isGameOverlapping(game1)
+        List<Game> gameList = Game.list()
+
+        then:
+        gameList.size() == 2
+        result1
         result2
     }
 

@@ -130,9 +130,12 @@ class GameService {
         List<GameConflict> gameConflicts = []
         for (x in games) {
             for (y in games) {
-                if (x.isGameOverlapping(y)) {
-                    GameConflict gameConflict = new GameConflict(key: key, game1: x, game2: y)
-                    gameConflicts << gameConflict
+                // if its not the same game then try the overlap
+                if (x.gameNumber != y.gameNumber) {
+                    if (x.isGameOverlapping(y)) {
+                        GameConflict gameConflict = new GameConflict(key: key, game1: x, game2: y)
+                        gameConflicts << gameConflict
+                    }
                 }
             }
         }
