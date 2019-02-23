@@ -18,6 +18,6 @@ class GameConflict {
     }
 
     String constructRow() {
-        ["GAME CONFLICT", "${game1.dateAsLocalDate}", "${game1.time}", "${game1.ageGroup}", "${game1.field}", getConflictMessage()].join(",")
+        ["GAME CONFLICT", "${game1.dateAsLocalDate}", "${game1.timeAsLocalTime}", "${game1.ageGroup}", "${game1.field}", getConflictMessage()].join(",")
     }
 }

@@ -9,9 +9,10 @@ import java.time.LocalTime
 class GameServiceSpec extends HibernateSpec implements ServiceUnitTest<GameService>{
 
     GameflictCreator gameflictCreator = new GameflictCreator()
-    LocalTime nineAm = LocalTime.of(9,00)
+    String nineAm = "9:00 AM"
     LocalDate oct31 = LocalDate.of(2018, 10, 31)
-    LocalTime tenAm = LocalTime.of(10,00)
+    String tenAm = "10:00 AM"
+    String elevenAm = "11:00 AM"
     LocalDate nov1 = LocalDate.of(2018, 11, 1)
     String homeCoach = "Nirav Assar"
     String visitorCoach = "Kirk Challgren"
@@ -153,14 +154,14 @@ class GameServiceSpec extends HibernateSpec implements ServiceUnitTest<GameServi
         localDate4.toString() == "2018-03-01"
     }
 
-    void "test parse localtime"() {
+    void "test get timeAsLocalTime"() {
         when:
-        LocalTime localTime1 = service.parseTime("9:00 AM")
-        LocalTime localTime2 = service.parseTime("2:15 PM")
+        Game game1 = new Game(time: nineAm)
+        Game game2 = new Game(time: "2:15 PM")
 
         then:
-        localTime1.toString() == "09:00"
-        localTime2.toString() == "14:15"
+        game1.timeAsLocalTime.toString() == "09:00"
+        game2.timeAsLocalTime.toString() == "14:15"
     }
 
     /*************** test game conflicts methods *******************************/
@@ -220,7 +221,7 @@ class GameServiceSpec extends HibernateSpec implements ServiceUnitTest<GameServi
         Field mm1 = Field.findByName("MM1")
         AgeGroup U9 = AgeGroup.findByName("U9")
         Game game1 = service.createOrUpdateGame(409, oct31, nineAm, U9, mm1, gssaRec, homeCoach, visitorCoach)
-        Game game2 = service.createOrUpdateGame(410, oct31, tenAm.plusHours(1), U9, mm1, gssaRec, homeCoach, visitorCoach)
+        Game game2 = service.createOrUpdateGame(410, oct31, elevenAm, U9, mm1, gssaRec, homeCoach, visitorCoach)
         boolean result1 = game1.isGameOverlapping(game2)
         boolean result2 = game2.isGameOverlapping(game1)
         List<Game> gameList = Game.list()
@@ -237,7 +238,7 @@ class GameServiceSpec extends HibernateSpec implements ServiceUnitTest<GameServi
         Field mm1 = Field.findByName("MM1")
         AgeGroup U9 = AgeGroup.findByName("U9")
         Game game1 = service.createOrUpdateGame(409, oct31, nineAm, U9, mm1, gssaRec, homeCoach, visitorCoach)
-        Game game2 = service.createOrUpdateGame(410, oct31, tenAm.plusHours(1), U9, mm1, gssaRec, "Bob", "Ted")
+        Game game2 = service.createOrUpdateGame(410, oct31, elevenAm, U9, mm1, gssaRec, "Bob", "Ted")
         boolean result1 = game1.isCoachInvolved(game2)
         boolean result2 = game2.isCoachInvolved(game1)
         List<Game> gameList = Game.list()
@@ -254,7 +255,7 @@ class GameServiceSpec extends HibernateSpec implements ServiceUnitTest<GameServi
         Field mm1 = Field.findByName("MM1")
         AgeGroup U9 = AgeGroup.findByName("U9")
         Game game1 = service.createOrUpdateGame(409, oct31, nineAm, U9, mm1, gssaRec, homeCoach, visitorCoach)
-        Game game2 = service.createOrUpdateGame(410, oct31, tenAm.plusHours(1), U9, mm1, gssaRec, homeCoach, "Ted")
+        Game game2 = service.createOrUpdateGame(410, oct31, elevenAm, U9, mm1, gssaRec, homeCoach, "Ted")
         boolean result1 = game1.isCoachInvolved(game2)
         boolean result2 = game2.isCoachInvolved(game1)
         List<Game> gameList = Game.list()
@@ -271,7 +272,7 @@ class GameServiceSpec extends HibernateSpec implements ServiceUnitTest<GameServi
         Field mm1 = Field.findByName("MM1")
         AgeGroup U9 = AgeGroup.findByName("U9")
         Game game1 = service.createOrUpdateGame(409, oct31, nineAm, U9, mm1, gssaRec, homeCoach, visitorCoach)
-        Game game2 = service.createOrUpdateGame(410, oct31, tenAm.plusHours(1), U9, mm1, gssaRec, "Bob", visitorCoach)
+        Game game2 = service.createOrUpdateGame(410, oct31, elevenAm, U9, mm1, gssaRec, "Bob", visitorCoach)
         boolean result1 = game1.isCoachInvolved(game2)
         boolean result2 = game2.isCoachInvolved(game1)
         List<Game> gameList = Game.list()

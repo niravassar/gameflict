@@ -13,19 +13,17 @@ import java.time.format.DateTimeFormatter
 class GameService {
 
     public static final String DATE_FORMAT = "M/d/[uuuu][uu]"
-    public static final String TIME_FORMAT = "h:mm a"
 
     FieldService fieldService
 
     Game gameEntry(Integer gameNumber, String dateAsString, String timeAsString, String ageGroupAsString, String fieldName,
                    String leagueName, String homeCoach, String visitorCoach) {
         LocalDate date = parseDate(dateAsString)
-        LocalTime time = parseTime(timeAsString)
         AgeGroup ageGroup = matchAgeGroup(ageGroupAsString)
         Field field = fieldService.findFieldByName(fieldName)
         League league = League.findByName(leagueName)
 
-        return createOrUpdateGame(gameNumber, date, time, ageGroup, field, league, homeCoach, visitorCoach)
+        return createOrUpdateGame(gameNumber, date, timeAsString, ageGroup, field, league, homeCoach, visitorCoach)
     }
 
     Team teamEntry(String teamName, String ageGroupAsString, String coachName) {
@@ -80,23 +78,17 @@ class GameService {
         localDate
     }
 
-    protected LocalTime parseTime(String timeAsString) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(TIME_FORMAT)
-        LocalTime localTime = LocalTime.parse(timeAsString, formatter)
-        localTime
-    }
-
     protected AgeGroup matchAgeGroup(String ageGroupAsString) {
         AgeGroup ageGroup = AgeGroup.findByName(ageGroupAsString)
         ageGroup
     }
 
-    protected Game createOrUpdateGame(Integer gameNumber, LocalDate date, LocalTime time, AgeGroup ageGroup,
+    protected Game createOrUpdateGame(Integer gameNumber, LocalDate date, String timeAsString, AgeGroup ageGroup,
                                       Field field, League league, String homeCoach, String visitorCoach) {
         Game game = Game.findOrCreateByGameNumberAndLeague(gameNumber, league)
         game.gameNumber = gameNumber
         game.date = java.sql.Date.valueOf(date)
-        game.time = time
+        game.time = timeAsString
         game.ageGroup = ageGroup
         game.field = field
         game.league = league

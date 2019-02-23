@@ -2,15 +2,18 @@ package org.gssa.gameflict
 
 import java.time.LocalDate
 import java.time.LocalTime
+import java.time.format.DateTimeFormatter
 
 /**
  * Information for a game entry
  */
 class Game {
 
+    public static final String TIME_FORMAT = "h:mm a"
+
     Integer gameNumber
     Date date
-    LocalTime time
+    String time
     AgeGroup ageGroup
     Field field
     League league
@@ -34,8 +37,8 @@ class Game {
     GameBlockTime getGameBlockTime() {
         GameBlockTime gameBlockTime = new GameBlockTime()
         gameBlockTime.game = this
-        gameBlockTime.startTime = time
-        gameBlockTime.endTime = time.plusMinutes(ageGroup.durationMinutes)
+        gameBlockTime.startTime = timeAsLocalTime
+        gameBlockTime.endTime = timeAsLocalTime.plusMinutes(ageGroup.durationMinutes)
         gameBlockTime
     }
 
@@ -70,10 +73,16 @@ class Game {
     }
 
     String constructRow() {
-        [gameNumber, dateAsLocalDate, time, ageGroup, field, league, homeCoach, visitorCoach].join(",")
+        [gameNumber, dateAsLocalDate, timeAsLocalTime, ageGroup, field, league, homeCoach, visitorCoach].join(",")
     }
 
     LocalDate getDateAsLocalDate() {
         new java.sql.Date(this.date.getTime()).toLocalDate()
+    }
+
+    LocalTime getTimeAsLocalTime() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(TIME_FORMAT)
+        LocalTime localTime = LocalTime.parse(time, formatter)
+        localTime
     }
 }

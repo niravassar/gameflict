@@ -64,7 +64,7 @@ class GameflictIntSpec extends Specification {
         games.size() == 6
         games[0].gameNumber == 935
         games[0].dateAsLocalDate.toString() == "2018-10-27"
-        games[0].time.toString() == "09:00"
+        games[0].timeAsLocalTime.toString() == "09:00"
 
         when:
         File gameCsv2 = new File("$SAMPLE_XLS_PATH/GSSARECF186_sample_game_moved.csv")
@@ -75,7 +75,7 @@ class GameflictIntSpec extends Specification {
         games.size() == 6
         games[0].gameNumber == 935
         games[0].dateAsLocalDate.toString() == "2018-12-01"
-        games[0].time.toString() == "17:00"
+        games[0].timeAsLocalTime.toString() == "17:00"
 
     }
 
