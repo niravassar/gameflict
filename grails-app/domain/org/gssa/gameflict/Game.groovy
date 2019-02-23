@@ -9,7 +9,7 @@ import java.time.LocalTime
 class Game {
 
     Integer gameNumber
-    LocalDate date
+    Date date
     LocalTime time
     AgeGroup ageGroup
     Field field
@@ -70,6 +70,10 @@ class Game {
     }
 
     String constructRow() {
-        [gameNumber, date, time, ageGroup, field, league, homeCoach, visitorCoach].join(",")
+        [gameNumber, dateAsLocalDate, time, ageGroup, field, league, homeCoach, visitorCoach].join(",")
+    }
+
+    LocalDate getDateAsLocalDate() {
+        new java.sql.Date(this.date.getTime()).toLocalDate()
     }
 }

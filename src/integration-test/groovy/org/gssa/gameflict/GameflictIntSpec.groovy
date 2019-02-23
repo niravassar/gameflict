@@ -63,7 +63,7 @@ class GameflictIntSpec extends Specification {
         then:
         games.size() == 6
         games[0].gameNumber == 935
-        games[0].date.toString() == "2018-10-27"
+        games[0].dateAsLocalDate.toString() == "2018-10-27"
         games[0].time.toString() == "09:00"
 
         when:
@@ -74,7 +74,7 @@ class GameflictIntSpec extends Specification {
         then:
         games.size() == 6
         games[0].gameNumber == 935
-        games[0].date.toString() == "2018-12-01"
+        games[0].dateAsLocalDate.toString() == "2018-12-01"
         games[0].time.toString() == "17:00"
 
     }

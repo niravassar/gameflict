@@ -38,7 +38,7 @@ class GameServiceSpec extends HibernateSpec implements ServiceUnitTest<GameServi
         gameList.size() == 1
         game.gameNumber == 409
         game.field.name == "MM1"
-        game.date.isEqual(oct31)
+        game.dateAsLocalDate.isEqual(oct31)
         game.time.equals(nineAm)
         game.homeCoach == "Nirav Assar"
         game.visitorCoach == "Kirk Challgren"
@@ -58,7 +58,7 @@ class GameServiceSpec extends HibernateSpec implements ServiceUnitTest<GameServi
         then:
         1 * mockFieldService.findFieldByName("MM1") >> Field.findByName("MM1")
         game.gameNumber == 205
-        game.date.toString() == "2018-10-28"
+        game.dateAsLocalDate.toString() == "2018-10-28"
         game.ageGroup.durationMinutes == 75
     }
 
@@ -75,7 +75,7 @@ class GameServiceSpec extends HibernateSpec implements ServiceUnitTest<GameServi
         gameList.size() == 1
         game.gameNumber == 409
         game.field.name == "MM1"
-        game.date.isEqual(nov1)
+        game.dateAsLocalDate.isEqual(nov1)
         game.time.equals(tenAm)
         game.homeCoach == "Nirav Assar"
     }

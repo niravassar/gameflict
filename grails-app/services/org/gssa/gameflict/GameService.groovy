@@ -4,7 +4,6 @@ import grails.gorm.transactions.Transactional
 
 import java.time.LocalDate
 import java.time.LocalTime
-import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 
 /**
@@ -41,8 +40,7 @@ class GameService {
 
     List<Game> findAllGamesOrAfterDate(Date date = null) {
         if (date) {
-            LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
-            List<Game> games = Game.findAllByDateGreaterThanEquals(localDate)
+            List<Game> games = Game.findAllByDateGreaterThanEquals(date)
             games
         } else {
             Game.list()
@@ -97,7 +95,7 @@ class GameService {
                                       Field field, League league, String homeCoach, String visitorCoach) {
         Game game = Game.findOrCreateByGameNumberAndLeague(gameNumber, league)
         game.gameNumber = gameNumber
-        game.date = date
+        game.date = java.sql.Date.valueOf(date)
         game.time = time
         game.ageGroup = ageGroup
         game.field = field
@@ -111,7 +109,7 @@ class GameService {
     protected Map<String, List<Game>> findAllGamesAndGroupByFieldAndDate(Date date = null) {
         List<Game> games = findAllGamesOrAfterDate(date)
         def byFieldAndLocalDate= { game ->
-            "${game.field}-${game.date}"
+            "${game.field}-${game.dateAsLocalDate}"
         }
         def groups = games.groupBy(byFieldAndLocalDate)
         groups
@@ -120,7 +118,7 @@ class GameService {
     protected Map<String, List<Game>> findAllGamesAndGroupByDate(Date date = null) {
         List<Game> games = findAllGamesOrAfterDate(date)
         def byLocalDate= { game ->
-            "${game.date}"
+            "${game.dateAsLocalDate}"
         }
         def groups = games.groupBy(byLocalDate)
         groups
