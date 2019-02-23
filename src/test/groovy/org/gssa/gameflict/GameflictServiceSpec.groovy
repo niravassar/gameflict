@@ -6,7 +6,7 @@ import grails.testing.services.ServiceUnitTest
 import java.time.LocalDate
 import java.time.LocalTime
 
-class GameServiceSpec extends HibernateSpec implements ServiceUnitTest<GameService>{
+class GameflictServiceSpec extends HibernateSpec implements ServiceUnitTest<GameflictService>{
 
     GameflictCreator gameflictCreator = new GameflictCreator()
     String nineAm = "9:00 AM"

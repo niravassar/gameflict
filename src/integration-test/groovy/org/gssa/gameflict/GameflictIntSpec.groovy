@@ -17,7 +17,6 @@ class GameflictIntSpec extends Specification {
     static final String SAMPLE_XLS_PATH = "src/integration-test/resources"
 
     GameflictService gameflictService
-    GameService gameService
 
     def setup() {
     }
@@ -88,9 +87,9 @@ class GameflictIntSpec extends Specification {
         gameflictService.importAndSaveGames(gameCsv1.path, gssaRec)
         gameflictService.importAndSaveGames(gameCsv2.path, gssaNmcsl)
 
-        LocalDate localDate = gameService.parseDate("11/03/2018")
+        LocalDate localDate = gameflictService.parseDate("11/03/2018")
         Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant())
-        List<Game> games = gameService.findAllGamesOrAfterDate(date)
+        List<Game> games = gameflictService.findAllGamesOrAfterDate(date)
         List<Game> gamesSorted = games.toSorted { it.gameNumber }
 
         then:
@@ -107,7 +106,7 @@ class GameflictIntSpec extends Specification {
         File gameCsv2 = new File("$SAMPLE_XLS_PATH/GSSANMCSL7_sample.csv")
         gameflictService.importAndSaveGames(gameCsv1.path, gssaRec)
         gameflictService.importAndSaveGames(gameCsv2.path, gssaNmcsl)
-        List<GameConflict> gameConflicts = gameService.calculateGameConflictsAfterDate()
+        List<GameConflict> gameConflicts = gameflictService.calculateGameConflictsAfterDate()
 
 
         then:
@@ -122,7 +121,7 @@ class GameflictIntSpec extends Specification {
         File gameCsv2 = new File("$SAMPLE_XLS_PATH/GSSANMCSL7_sample.csv")
         gameflictService.importAndSaveGames(gameCsv1.path, gssaRec)
         gameflictService.importAndSaveGames(gameCsv2.path, gssaNmcsl)
-        List<GameConflict> gameConflicts = gameService.calculateGameConflictsAfterDate()
+        List<GameConflict> gameConflicts = gameflictService.calculateGameConflictsAfterDate()
 
 
         then:
@@ -139,7 +138,7 @@ class GameflictIntSpec extends Specification {
         File gameCsv2 = new File("$SAMPLE_XLS_PATH/GSSANMCSL7_sample.csv")
         gameflictService.importAndSaveGames(gameCsv1.path, gssaRec)
         gameflictService.importAndSaveGames(gameCsv2.path, gssaNmcsl)
-        List<CoachConflict> coachConflicts = gameService.calculateCoachConflictsAfterDate()
+        List<CoachConflict> coachConflicts = gameflictService.calculateCoachConflictsAfterDate()
 
 
         then:
@@ -154,7 +153,7 @@ class GameflictIntSpec extends Specification {
         File gameCsv2 = new File("$SAMPLE_XLS_PATH/GSSANMCSL7_sample.csv")
         gameflictService.importAndSaveGames(gameCsv1.path, gssaRec)
         gameflictService.importAndSaveGames(gameCsv2.path, gssaNmcsl)
-        List<CoachConflict> coachConflicts = gameService.calculateCoachConflictsAfterDate()
+        List<CoachConflict> coachConflicts = gameflictService.calculateCoachConflictsAfterDate()
 
 
         then:

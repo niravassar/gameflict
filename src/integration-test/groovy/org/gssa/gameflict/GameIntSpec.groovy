@@ -14,20 +14,20 @@ import java.time.ZoneId
 @Rollback
 class GameIntSpec extends Specification {
 
-    GameService gameService
+    GameflictService gameflictService
 
     def setup() {
-        gameService.gameEntry(200, "10/28/2018","9:00 AM","U9",
+        gameflictService.gameEntry(200, "10/28/2018","9:00 AM","U9",
                 "GSSA Meadowmere #2A","GSSA Rec", "Nirav Assar", "Kirk Challgren")
-        gameService.gameEntry(201, "10/28/2018","10:00 AM","U9",
+        gameflictService.gameEntry(201, "10/28/2018","10:00 AM","U9",
                 "GSSA Meadowmere #2A","GSSA Rec", "Bob", "Nirav Assar")
-        gameService.gameEntry(202, "10/31/2018","10:15 AM","U10",
+        gameflictService.gameEntry(202, "10/31/2018","10:15 AM","U10",
                 "GSSA Oak Grove Park #5A","GSSA Rec", "Jon", "Rob")
-        gameService.gameEntry(203, "11/15/2018","5:15 PM","U13",
+        gameflictService.gameEntry(203, "11/15/2018","5:15 PM","U13",
                 "Oakgrove #1","GSSA Rec", "Nirav Assar", "Kirk Challgren")
-        gameService.gameEntry(204, "11/15/2018","10:00 AM","U9",
+        gameflictService.gameEntry(204, "11/15/2018","10:00 AM","U9",
                 "GSSA Meadowmere #2A","GSSA Rec", "Nirav Assar", "Kirk Challgren")
-        gameService.gameEntry(205, "11/15/2018","12:00 PM","U10",
+        gameflictService.gameEntry(205, "11/15/2018","12:00 PM","U10",
                 "GSSA Meadowmere #2A","GSSA Rec", "Mark", "Steve")
 
     }
@@ -37,9 +37,9 @@ class GameIntSpec extends Specification {
 
     void "test query all games by date"() {
         when:
-        LocalDate localDate = gameService.parseDate("10/29/2018")
+        LocalDate localDate = gameflictService.parseDate("10/29/2018")
         Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant())
-        List<Game> games = gameService.findAllGamesOrAfterDate(date)
+        List<Game> games = gameflictService.findAllGamesOrAfterDate(date)
 
         then:
         games.size() == 4
@@ -48,7 +48,7 @@ class GameIntSpec extends Specification {
 
     void "test query all games - no date passed"() {
         when:
-        List<Game> games = gameService.findAllGamesOrAfterDate()
+        List<Game> games = gameflictService.findAllGamesOrAfterDate()
 
         then:
         games.size() == 6
@@ -57,7 +57,7 @@ class GameIntSpec extends Specification {
 
     void "test groupBy date and field"() {
         when:
-        Map<String, List<Game>> groups = gameService.findAllGamesAndGroupByFieldAndDate()
+        Map<String, List<Game>> groups = gameflictService.findAllGamesAndGroupByFieldAndDate()
         Set<String> keys = groups.keySet()
         List<Game> mm2GamesOct28 = groups.get(keys[0])
 
@@ -70,7 +70,7 @@ class GameIntSpec extends Specification {
 
     void "test groupBy date - for coaches conflict purpose"() {
         when:
-        Map<String, List<Game>> groups = gameService.findAllGamesAndGroupByDate()
+        Map<String, List<Game>> groups = gameflictService.findAllGamesAndGroupByDate()
         Set<String> keys = groups.keySet()
         List<Game> oct28Games = groups.get(keys[0])
 
@@ -83,10 +83,10 @@ class GameIntSpec extends Specification {
 
     void "test game conflicts for one group - conflict exists"() {
         when:
-        Map<String, List<Game>> groups = gameService.findAllGamesAndGroupByFieldAndDate()
+        Map<String, List<Game>> groups = gameflictService.findAllGamesAndGroupByFieldAndDate()
         Set<String> keys = groups.keySet()
         List<Game> mm2GamesOct28 = groups.get(keys[0])
-        List<GameConflict> gameConflicts = gameService.calculateGameConflictsForOneGroup(keys[0], mm2GamesOct28)
+        List<GameConflict> gameConflicts = gameflictService.calculateGameConflictsForOneGroup(keys[0], mm2GamesOct28)
 
         then:
         gameConflicts.size() == 1
@@ -96,10 +96,10 @@ class GameIntSpec extends Specification {
 
     void "test coach conflicts for one day - conflict exists"() {
         when:
-        Map<String, List<Game>> groups = gameService.findAllGamesAndGroupByDate()
+        Map<String, List<Game>> groups = gameflictService.findAllGamesAndGroupByDate()
         Set<String> keys = groups.keySet()
         List<Game> oct28Games = groups.get(keys[0])
-        List<CoachConflict> coachConflicts = gameService.calculateCoachConflictsForOneDay(keys[0], oct28Games)
+        List<CoachConflict> coachConflicts = gameflictService.calculateCoachConflictsForOneDay(keys[0], oct28Games)
 
         then:
         coachConflicts.size() == 1
@@ -110,10 +110,10 @@ class GameIntSpec extends Specification {
 
     void "test game conflicts for one group - no conflicts"() {
         when:
-        Map<String, List<Game>> groups = gameService.findAllGamesAndGroupByFieldAndDate()
+        Map<String, List<Game>> groups = gameflictService.findAllGamesAndGroupByFieldAndDate()
         Set<String> keys = groups.keySet()
         List<Game> mm2GamesNov15 = groups.get(keys[3])
-        List<GameConflict> gameConflicts = gameService.calculateGameConflictsForOneGroup(keys[3], mm2GamesNov15)
+        List<GameConflict> gameConflicts = gameflictService.calculateGameConflictsForOneGroup(keys[3], mm2GamesNov15)
 
         then:
         gameConflicts.size() == 0
@@ -121,10 +121,10 @@ class GameIntSpec extends Specification {
 
     void "test coach conflicts for one day - no conflicts"() {
         when:
-        Map<String, List<Game>> groups = gameService.findAllGamesAndGroupByDate()
+        Map<String, List<Game>> groups = gameflictService.findAllGamesAndGroupByDate()
         Set<String> keys = groups.keySet()
         List<Game> nov15Games = groups.get(keys[2])
-        List<CoachConflict> coachConflicts = gameService.calculateCoachConflictsForOneDay(keys[2], nov15Games)
+        List<CoachConflict> coachConflicts = gameflictService.calculateCoachConflictsForOneDay(keys[2], nov15Games)
 
         then:
         coachConflicts.size() == 0
@@ -132,7 +132,7 @@ class GameIntSpec extends Specification {
 
     void "test game conflicts for all groups"() {
         when:
-        List<GameConflict> gameConflicts = gameService.calculateGameConflictsAfterDate()
+        List<GameConflict> gameConflicts = gameflictService.calculateGameConflictsAfterDate()
 
         then:
         gameConflicts.size() == 1
@@ -142,7 +142,7 @@ class GameIntSpec extends Specification {
 
     void "test coach conflicts for all groups"() {
         when:
-        List<CoachConflict> coachConflicts = gameService.calculateCoachConflictsAfterDate()
+        List<CoachConflict> coachConflicts = gameflictService.calculateCoachConflictsAfterDate()
 
         then:
         coachConflicts.size() == 1
