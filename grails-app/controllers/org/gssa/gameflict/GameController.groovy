@@ -11,15 +11,11 @@ class GameController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond gameService.list(params), model:[gameCount: gameService.count()]
-    }
-
-    def show(Long id) {
-        respond gameService.get(id)
+        [gameCount: gameService.count(), gameInstanceList: gameService.list(params)]
     }
 
     def create() {
-        respond new Game(params)
+        [gameInstance: new Game(params)]
     }
 
     def save(Game game) {
@@ -45,7 +41,7 @@ class GameController {
     }
 
     def edit(Long id) {
-        respond gameService.get(id)
+        [gameInstance:  gameService.get(id)]
     }
 
     def update(Game game) {
