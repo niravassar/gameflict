@@ -29,7 +29,11 @@
 						<g:sortableColumn property="date" title="${message(code: 'game.date.label', default: 'Date')}" />
 					
 						<g:sortableColumn property="time" title="${message(code: 'game.time.label', default: 'Time')}" />
-					
+
+						<g:sortableColumn property="ageGroup" title="${message(code: 'game.time.label', default: 'Age Group')}" />
+
+						<g:sortableColumn property="field" title="${message(code: 'game.time.label', default: 'Field')}" />
+
 						<g:sortableColumn property="homeTeam" title="${message(code: 'game.homeCoach.label', default: 'Home Team')}" />
 					
 						<g:sortableColumn property="VisitorTeam" title="${message(code: 'game.visitorCoach.label', default: 'Visitor Team')}" />
@@ -45,7 +49,11 @@
 						<td><g:formatDate date="${gameInstance.date}" format="yyyy-MM-dd" /></td>
 					
 						<td>${fieldValue(bean: gameInstance, field: "time")}</td>
-					
+
+						<td>${fieldValue(bean: gameInstance, field: "ageGroup")}</td>
+
+						<td>${fieldValue(bean: gameInstance, field: "field")}</td>
+
 						<td>${fieldValue(bean: gameInstance, field: "homeTeam")}</td>
 					
 						<td>${fieldValue(bean: gameInstance, field: "visitorTeam")}</td>
