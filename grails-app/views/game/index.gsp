@@ -30,9 +30,9 @@
 					
 						<g:sortableColumn property="time" title="${message(code: 'game.time.label', default: 'Time')}" />
 					
-						<g:sortableColumn property="homeCoach" title="${message(code: 'game.homeCoach.label', default: 'Home Coach')}" />
+						<g:sortableColumn property="homeTeam" title="${message(code: 'game.homeCoach.label', default: 'Home Team')}" />
 					
-						<g:sortableColumn property="visitorCoach" title="${message(code: 'game.visitorCoach.label', default: 'Visitor Coach')}" />
+						<g:sortableColumn property="VisitorTeam" title="${message(code: 'game.visitorCoach.label', default: 'Visitor Team')}" />
 					
 					</tr>
 				</thead>
@@ -40,21 +40,21 @@
 				<g:each in="${gameInstanceList}" status="i" var="gameInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="edit" id="${gameInstance.id}">${fieldValue(bean: gameInstance, field: "gameNumber")}</g:link></td>
+						<td><g:link action="edit" id="${gameInstance.id}">${gameInstance.gameNumber}</g:link></td>
 					
-						<td><g:formatDate date="${gameInstance.date}" /></td>
+						<td><g:formatDate date="${gameInstance.date}" format="yyyy-MM-dd" /></td>
 					
 						<td>${fieldValue(bean: gameInstance, field: "time")}</td>
 					
-						<td>${fieldValue(bean: gameInstance, field: "homeCoach")}</td>
+						<td>${fieldValue(bean: gameInstance, field: "homeTeam")}</td>
 					
-						<td>${fieldValue(bean: gameInstance, field: "visitorCoach")}</td>
+						<td>${fieldValue(bean: gameInstance, field: "visitorTeam")}</td>
 					</tr>
 				</g:each>
 				</tbody>
 			</table>
 			<div class="pagination">
-				<g:paginate total="${gameInstanceCount ?: 0}" />
+				<g:paginate total="${gameCount ?: 0}" />
 			</div>
 		</div>
 	</body>
