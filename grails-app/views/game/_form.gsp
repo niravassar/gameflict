@@ -1,6 +1,4 @@
-
-
-
+<%@ page import="org.gssa.gameflict.Field; org.gssa.gameflict.Team; org.gssa.gameflict.AgeGroup" %>
 
 <div class="fieldcontain ${hasErrors(bean: gameInstance, field: 'gameNumber', 'error')} required">
 	<label for="gameNumber">
@@ -26,24 +24,42 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<g:textField name="time" required="" value="${gameInstance?.time}"/>
+	<b>ex format: 9:00 AM</b>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: gameInstance, field: 'ageGroup', 'error')} required">
+	<label for="ageGroup">
+		<g:message code="game.ageGroup.label" default="Age Group" />
+		<span class="required-indicator">*</span>
+	</label>
+	${gameInstance?.ageGroup}
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: gameInstance, field: 'homeCoach', 'error')} ">
+<div class="fieldcontain ${hasErrors(bean: gameInstance, field: 'field', 'error')} required">
+	<label for="field">
+		<g:message code="game.ageGroup.label" default="Field" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:select name="field" from="${Field.list()}" value="${gameInstance?.field?.id}" optionKey="id"/>
+
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: gameInstance, field: 'homeTeam', 'error')} ">
 	<label for="homeCoach">
-		<g:message code="game.homeCoach.label" default="Home Coach" />
+		<g:message code="game.homeCoach.label" default="Home Team" />
 		
 	</label>
-	<g:textField name="homeCoach" value="${gameInstance?.homeCoach}"/>
+	${gameInstance?.homeTeam}
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: gameInstance, field: 'visitorCoach', 'error')} ">
+<div class="fieldcontain ${hasErrors(bean: gameInstance, field: 'visitorTeam', 'error')} ">
 	<label for="visitorCoach">
-		<g:message code="game.visitorCoach.label" default="Visitor Coach" />
+		<g:message code="game.visitorCoach.label" default="Visitor Team" />
 		
 	</label>
-	<g:textField name="visitorCoach" value="${gameInstance?.visitorCoach}"/>
+	${gameInstance?.visitorTeam}
 
 </div>
 

@@ -74,6 +74,7 @@ class GameflictCreator {
             {"name": "U16", "durationMinutes": "90"},                  
             {"name": "U17", "durationMinutes": "90"},                  
             {"name": "U18", "durationMinutes": "90"},                  
+            {"name": "U19", "durationMinutes": "90"},                  
             {"name": "ADULT4HR", "durationMinutes": "240"},                  
             {"name": "ADULT8HR", "durationMinutes": "480"}              
         ]'''

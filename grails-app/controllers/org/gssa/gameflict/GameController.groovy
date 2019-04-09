@@ -56,14 +56,7 @@ class GameController {
             respond game.errors, view:'edit'
             return
         }
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'game.label', default: 'Game'), game.id])
-                redirect game
-            }
-            '*'{ respond game, [status: OK] }
-        }
+        redirect (action: 'index')
     }
 
     def delete(Long id) {
